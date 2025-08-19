@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,15 +104,15 @@
         <span class="time-label">days</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="hours">15</span>
+        <span class="time-number" id="hours">09</span>
         <span class="time-label">hours</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="minutes">06</span>
+        <span class="time-number" id="minutes">39</span>
         <span class="time-label">minutes</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="seconds">23</span>
+        <span class="time-number" id="seconds">00</span>
         <span class="time-label">seconds</span>
       </div>
     </div>
@@ -123,7 +124,7 @@
 
   <script>
     // Target date: December 21, 2025 at 9:00 AM Singapore Time
-    const targetDate = new Date('2025-08-19T23:19:10+08:00').getTime();
+    const targetDate = new Date('2025-08-19T23:23:10+08:00').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -149,6 +150,7 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
+
 
 
 </body></html>
