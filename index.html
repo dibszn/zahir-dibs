@@ -72,6 +72,7 @@
       font-weight: bold;
       display: block;
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
     .time-label {
@@ -123,8 +124,8 @@
   </div>
 
   <script>
-    // Target date: December 21, 2025 at 9:00 AM Singapore Time
-    const targetDate = new Date('2025-08-19T23:23:10+08:00').getTime();
+    // Target date: August 19, 2025 at 11:30 PM Singapore Time
+    const targetDate = new Date('2025-08-19T23:30:00+08:00').getTime();
 
     function updateCountdown() {
       const now = new Date().getTime();
@@ -150,7 +151,4 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
-
-
-
 </body></html>
