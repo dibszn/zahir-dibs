@@ -1,22 +1,24 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSVP Form</title>
 </head>
 <body>
-  <style>
-      body {
-        background: rgb(230, 228, 221);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-    
-      .container {
-        width: 50%;
-        height: 10%;
+  <style>    
+      .fieldcontainer {
         position: relative; font-size: 2vmin;
+      }
+
+      .Name_fieldContainer {
+        position: relative;
+        height: 100%;
+        width: 45%;
+        background: #FFFFFF;
+        border: 0.5px solid #fff;
+        border-radius: 0.5em;
+        outline: none;
+        color: #fff; font-size: 2vmin;
       }
 
       .form__input {
@@ -28,7 +30,6 @@
         border-radius: 0.5em;
         outline: none;
         color: #fff;
-        padding-left: 1em;
       }
 
       label {
@@ -36,7 +37,7 @@
         background: transparent;
         color: #113c25;
         font-family: sans-serif;
-        left: 5%;
+        left: 7%;
         top: 35%;
         cursor: pointer;
         transition: top 350ms ease;
@@ -56,10 +57,18 @@
         top: -2em;
         left: 0;
         font-size: 1.5em;
-      }</style>
-
-<div class="container">
-      <input type="text" id="name" autocomplete="off" placeholder=" " class="form__input">
-      <label for="name">Name</label>
+      }
+  </style>
+<section style="width:100vw; height: 100vh; background: rgb(230, 228, 221);display: flex; flex-direction: column; justify-content: center; align-items: center">
+<div id="NameData" style="width: 80%; height: 8%; display:flex; justify-content: space-between">
+  <div class="Name_fieldContainer">
+      <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
+      <label for="firstname">First Name</label>
     </div>
+  <div class="Name_fieldContainer">
+      <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
+      <label for="lastname">Last Name</label>
+    </div>
+</div></section>
+
 </body></html>
