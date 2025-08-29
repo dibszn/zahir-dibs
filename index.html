@@ -108,7 +108,7 @@
     </div>
     <div id="Headcount">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" autocomplete="off" placeholder=" " class="form__input">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
@@ -141,7 +141,7 @@
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
         GuestField.style.display = "inline-block";
-        GuestField.required;
+        GuestField.setAttribute("required", "");
         modalTitle.textContent = "Thanks for the confirmation!";
         modalMessage.textContent = "See you on 21st December 🥳";
       } 
