@@ -56,10 +56,7 @@
     .form__input:not(:placeholder-shown) ~ headcountlabel, 
 input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel,
-    .form__input:not(:placeholder-shown) ~ msglabel {
-      top: -2em;
-    }
-.select__input:not(:placeholder-shown) ~ selectlabel {
+    .form__input:not(:placeholder-shown) ~ msglabel, .select__input:focus ~ selectlabel  {
       top: -2em;
     }
     select option {
@@ -81,9 +78,9 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
       </div>
     </div>
     <div id="AttendanceData" style="width: 80%; height: 8%;">
-      <div style="position: relative; height: 100%; width: 100%; idsplay: flex; align-items: flex-start">
+      <div style="position: relative; height: 100%; width: 100%;">
         <select id="attendance" name="attendance" class="select__input" placeholder=" ">
-          <option style="display:none" placeholder=" " selected=" "> </option>
+          <option style="display: none" selected=""> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be attending.</option>
         </select>
@@ -100,5 +97,18 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
     </div>
-  </div></section>
+  </div>
+
+<script>const selectElement = document.getElementById('attendance');
+const labelElement = document.getElementById('selectlabel');
+
+selectElement.addEventListener('change', () => {
+  if (selectElement.value === 'Yes') {
+    labelElement.style.top = '-2em';
+  } else if (selectElement.value === 'No') {
+    labelElement.style.top = '-2em';
+  }
+});\
+</script>
+  </section>
 </body></html>
