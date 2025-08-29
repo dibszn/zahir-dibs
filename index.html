@@ -9,7 +9,7 @@
     <style>    
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
-        height:calc(20%+2em); 
+        height:10%; 
         border:none; 
         margin:0;
       }
@@ -46,13 +46,13 @@
         left:10px;
     }
     headcountlabel, namelabel {
-        top: 30%;
+        top: 35%;
     }
     msglabel{
-        top:40%;
+        top:42%;
     }
     selectlabel {
-      top: 27%;
+      top: 30%;
     }
     .form__input:hover {
       border: 0.5px solid #383838;
@@ -73,7 +73,7 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
       font-family: sans-serif;
     }
     </style>
-<form style="width:90%;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
+<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-around" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
     <fieldset id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
@@ -104,7 +104,9 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
     </div>
-  </fieldset></form>
+  </fieldset>
+  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; color:white; background-color: #113c25; border-radius:10px; border:none;">
+</form>
 
 <script>
 const selectElement = document.getElementById('attendance');
