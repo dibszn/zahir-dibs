@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +15,10 @@
       height: 100%;
       width: 45%;
     }
-    .msg_fieldContainer {
+    .msg_fieldContainer, .Headcount_fieldContainer {
       position: relative;
       height: 100%;
-      width: 90%;
+      width: 100%;
     }
     .form__input, .select__input {
       position: relative;
@@ -32,21 +31,24 @@
       color: #113c25;
       padding-left: 10px;
     }
-    namelabel, selectlabel {
+    namelabel, selectlabel,msglabel, headcountlabel {
       position: absolute;
       background: transparent;
       color: #113c25;
       font-family: sans-serif;
       pointer-events: none;
       font-size: 1.5em;
+        transition: top 350ms ease;
+        left:10px;
     }
-    namelabel {
-      left: 10px;
-      top: 35%;       transition: top 350ms ease;
+    headcountlabel, namelabel {
+        top: 35%;
+    }
+    msglabel{
+        top:40%;
     }
     selectlabel {
-      left: 10px;
-      bottom: 27%;       transition: bottom 350ms ease;
+      bottom: 27%;
     }
     .form__input:hover {
       border: 0.5px solid #383838;
@@ -54,8 +56,11 @@
     .form__input:focus {
       border: 0.5px solid #113c25;
     }
-    input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
-    .form__input:not(:placeholder-shown) ~ namelabel {
+    input[id="headcount"]:focus ~ headcountlabel,
+    .form__input:not(:placeholder-shown) ~ headcountlabel, 
+input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
+    .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel,
+    .form__input:not(:placeholder-shown) ~ msglabel, select:focus ~ selectlabel, .select__input:not(:placeholder-shown) ~ selectlabel {
       top: -2em;
     }
     select option {
@@ -63,11 +68,7 @@
       background-color: transparent;
       font-family: sans-serif;
       margin-left:3%;
-    }
-    select:focus ~ selectlabel, .select__input:not(:placeholder-shown) ~ selectlabel {
-      bottom: 3.5em;
-    }
-    </style>
+    }</style>
     
     <div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
       <div class="Name_fieldContainer">
@@ -81,18 +82,23 @@
     </div>
     <div id="AttendanceData" style="width: 80%; height: 8%;">
       <div style="position: relative; height: 100%; width: 100%; idsplay: flex; align-items: flex-start">
-        <select id="attendance" name="attendance" class="select__input">
-          <option style="display:none" selected="" placeholder=" "> </option>
+        <select id="attendance" name="attendance" class="select__input" placeholder=" ">
+          <option style="display:none" selected=""> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be attending.</option>
         </select>
         <selectlabel for="attendance">Will you be attending?</selectlabel>
       </div>
     </div>
-    <div id="MessageData" style="width: 80%; height: 15%;">
+    <div id="Headcount" style="width: 80%; height: 8%;">
+      <div class="Headcount_fieldContainer">
+        <input type="number" id="headcount" autocomplete="off" placeholder=" " class="form__input">
+        <headcountlabel for="headcount">Number of Guests</headcountlabel>
+      </div>
+    </div><div id="MessageData" style="width: 80%; height: 15%;">
       <div class="msg_fieldContainer">
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
-        <namelabel for="message">Any wishes/messages for the newlywed?</namelabel>
+        <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
     </div>
-  </section>
+  </div></section>
 </body></html>
