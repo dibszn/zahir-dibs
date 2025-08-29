@@ -148,59 +148,5 @@ selectElement.addEventListener("change", () => {
   }
 });
 </script>
-    
-/* <script>
-  document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("bootstrapForm");
-  const modal = document.getElementById("thanksModal");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalMessage = document.getElementById("modalMessage");
-  const selectElement = document.getElementById('attendance');
-  const GuestField = document.getElementById('Headcount');
-  const labelElement = document.querySelector('selectlabel');
-
-  form.addEventListener("submit", e => {
-  e.preventDefault();
-
-      fetch(form.action, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors"
-    });
-    
-    modalTitle.textContent = attending ? "Thanks for the RSVP!" : "Oh no :(";
-    modalMessage.textContent = attending
-      ? "We look forward to seeing you at the wedding!"
-      : "We're sad to not have you at the celebration!";
-
-    form.reset();
-    guestsField.style.display = "none";
-    modal.style.display = "flex";
-
-    const closeHandler = () => {
-      modal.style.display = "none";
-      window.removeEventListener("click", closeHandler);
-      window.removeEventListener("touchstart", closeHandler);
-      window.removeEventListener("touchmove", closeHandler);
-      window.removeEventListener("scroll", closeHandler);
-    };
-
-    window.addEventListener("click", closeHandler, { once: true });
-    window.addEventListener("touchstart", closeHandler, { once: true });
-    window.addEventListener("touchmove", closeHandler, { once: true });
-    window.addEventListener("scroll", closeHandler, { once: true });
-  });
-});
-    
-  selectElement.addEventListener('change', () => {
-    if (selectElement.value === 'Yes') {
-      labelElement.style.top = '-2em';
-      Headcount.style.display = 'inline-block'
-    }
-    else (selectElement.value === 'No') {
-      labelElement.style.top = '-2em';
-    }
-});
-</script> */
   </section>
 </body></html>
