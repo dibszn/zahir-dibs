@@ -7,6 +7,12 @@
 <body>
   <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; align-items: center; font-size: 2vmin; font-family:sans-serif; gap: 5vmin; justify-content: space-around">
     <style>    
+      #NameData, #AttendanceData, #Headcount, #MessageData { 
+        width: 100%; 
+        height:calc(20%+2em); 
+        border:none; 
+        margin:0;
+      }
       
       .Name_fieldContainer {
       position: relative;
@@ -68,7 +74,7 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     }
     </style>
 <form style="width:90%;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
-    <fieldset style="width: 100%; display: flex; justify-content: space-between; border:none; margin:0;" id="NameData">
+    <fieldset id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="firstname">First Name</namelabel>
@@ -78,7 +84,7 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </fieldset>
-    <fieldset id="AttendanceData" style="width: 100%; border:none; margin:0;">
+    <fieldset id="AttendanceData">
       <div style="position: relative; height: 100%; width: 100%;">
         <select id="attendance" name="attendance" class="select__input" placeholder=" ">
           <option style="display: none" selected=""> </option>
@@ -88,12 +94,12 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <selectlabel for="attendance">Will you be attending?</selectlabel>
       </div>
     </fieldset>
-    <fieldset id="Headcount" style="width: 100%; border:none; margin:0;">
+    <fieldset id="Headcount">
       <div class="Headcount_fieldContainer">
         <input type="number" id="headcount" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
-    </fieldset><fieldset id="MessageData" style="width: 100%; border:none; margin:0;">
+    </fieldset><fieldset id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
