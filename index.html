@@ -5,7 +5,7 @@
   <title>RSVP Form</title>
 </head>
 <body>
-  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2vmin; font-family:sans-serif">
+  <section style="width:100vw; height: 80vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; align-items: center; font-size: 2vmin; font-family:sans-serif; gap: 5vmin; justify-content: space-around">
     <style>    .Name_fieldContainer {
       position: relative;
       height: 100%;
@@ -25,7 +25,6 @@
       border-radius: 0.5em;
       outline: none;
       color: #113c25;
-      padding-left: 10px;
     }
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -63,11 +62,10 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
       color: #113C25;
       background-color: transparent;
       font-family: sans-serif;
-      margin-left:3%;
     }
     </style>
-    
-    <div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
+<form style="width:90%;" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
+    <fieldset style="width: 100%; display: flex; justify-content: space-between; border:none; margin:0;" id="NameData">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="firstname">First Name</namelabel>
@@ -76,8 +74,8 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
-    </div>
-    <div id="AttendanceData" style="width: 80%; height: 8%;">
+    </fieldset>
+    <fieldset id="AttendanceData" style="width: 100%; border:none; margin:0;">
       <div style="position: relative; height: 100%; width: 100%;">
         <select id="attendance" name="attendance" class="select__input" placeholder=" ">
           <option style="display: none" selected=""> </option>
@@ -86,18 +84,18 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         </select>
         <selectlabel for="attendance">Will you be attending?</selectlabel>
       </div>
-    </div>
-    <div id="Headcount" style="width: 80%; height: 8%;">
+    </fieldset>
+    <fieldset id="Headcount" style="width: 100%; border:none; margin:0;">
       <div class="Headcount_fieldContainer">
         <input type="number" id="headcount" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
-    </div><div id="MessageData" style="width: 80%; height: 15%;">
+    </fieldset><fieldset id="MessageData" style="width: 100%; border:none; margin:0;">
       <div class="msg_fieldContainer">
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
     </div>
-  </div>
+  </fieldset></form>
 
 <script>
 const selectElement = document.getElementById('attendance');
