@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,12 +6,7 @@
 </head>
 <body>
   <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2vmin; font-family:sans-serif">
-    <style>
-    .fieldcontainer {
-      position: relative;
-      font-size: 2vmin;
-    }
-    .Name_fieldContainer {
+    <style>    .Name_fieldContainer {
       position: relative;
       height: 100%;
       width: 45%;
@@ -31,7 +27,7 @@
       color: #113c25;
       padding-left: 10px;
     }
-    namelabel, selectlabel,msglabel, headcountlabel {
+    namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
       background: transparent;
       color: #113c25;
@@ -42,13 +38,13 @@
         left:10px;
     }
     headcountlabel, namelabel {
-        top: 35%;
+        top: 30%;
     }
     msglabel{
         top:40%;
     }
     selectlabel {
-      bottom: 27%;
+      top: 27%;
     }
     .form__input:hover {
       border: 0.5px solid #383838;
@@ -60,7 +56,10 @@
     .form__input:not(:placeholder-shown) ~ headcountlabel, 
 input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel,
-    .form__input:not(:placeholder-shown) ~ msglabel, select:focus ~ selectlabel, .select__input:not(:placeholder-shown) ~ selectlabel {
+    .form__input:not(:placeholder-shown) ~ msglabel {
+      top: -2em;
+    }
+.select__input:not(:placeholder-shown) ~ selectlabel {
       top: -2em;
     }
     select option {
@@ -68,7 +67,8 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
       background-color: transparent;
       font-family: sans-serif;
       margin-left:3%;
-    }</style>
+    }
+    </style>
     
     <div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
       <div class="Name_fieldContainer">
