@@ -141,8 +141,8 @@
 
     (async () => {
       const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
-      const confirmation = await response.text();
-      document.getElementById("confirmation").innerText = confirmation;
+      const data = await response.json();
+      document.getElementById("confirmation").innerText = data.totalcount;
     })();
 
     selectElement.addEventListener("change", () => {
