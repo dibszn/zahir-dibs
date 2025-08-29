@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
+  <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSVP Form</title>
 </head>
@@ -41,12 +42,12 @@
       font-family: sans-serif;
       pointer-events: none;
       font-size: 1.5em;
-        transition: top 350ms ease;
-        left:10px;
+      transition: top 350ms ease;
+      left:10px;
     }
     headcountlabel, namelabel {
         top: 35%;  }
-    msglabel{
+    msglabel {
         top:42%;  }
     selectlabel {
       top: 30%;  }
@@ -56,7 +57,7 @@
       border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
     .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .select__input:focus ~ selectlabel  {
-      top: -2em;  }
+      top: -1em;  }
     select option {
       color: #113C25;
       background-color: transparent;
@@ -96,7 +97,7 @@
       </div>
     </div>
     <div id="AttendanceData">
-      <div style="position: relative; height: 100%; width: 100%;">
+      <div style="position: relative; height: 100%; width: 103%;">
         <select id="attendance" name="attendance" class="select__input" placeholder=" ">
           <option style="display: none" selected=""> </option>
           <option value="Yes">Yes, I am!</option>
@@ -114,10 +115,10 @@
   <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
-        <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
+        <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; color:white; background-color: #113c25; border-radius:10px; border:none;">
+  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
   <div id="thanksModal" style="display: none;">
       <div class="modal-content">
@@ -151,6 +152,14 @@
 
     form.addEventListener("submit", e => {
     e.preventDefault();
+      
+    const formData = new FormData(form);  
+      
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors"
+    });
 
     form.reset();
     GuestField.style.display = "none";
