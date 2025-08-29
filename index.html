@@ -126,7 +126,31 @@
         <p id="modalMessage" style="font-size: 3em;">We look forward to seeing you at the wedding!</p>
       </div>
     </div>
+
 <script>
+  const selectElement = document.getElementById('attendance');
+  const labelElement = document.getElementById('selectlabel');
+  const GuestField = document.getElementById('Headcount');
+  const modal = document.getElementById("thanksModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMessage = document.getElementById("modalMessage");
+
+  selectElement.addEventListener('change', () => {
+    if (selectElement.value === 'Yes') {
+      labelElement.style.top = '-2em';
+      GuestField.style.display = 'inline-block';
+      modalTitle.textContent = 'Thanks for the confirmation!';
+      modalMessage.textContent = 'See you on 21st December 🥳';
+    } 
+    else if (selectElement.value === 'No') {
+      labelElement.style.top = '-2em';
+      modalTitle.textContent = 'Aw shucks 🥲';
+      modalMessage.textContent = 'See you when I see you';
+    }
+});
+</script>  
+    
+/* <script>
   document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("bootstrapForm");
   const modal = document.getElementById("thanksModal");
@@ -136,23 +160,10 @@
   const GuestField = document.getElementById('Headcount');
   const labelElement = document.querySelector('selectlabel');
 
-  selectElement.addEventListener('change', () => {
-    if (selectElement.value === 'Yes') {
-      labelElement.style.top = '-2em';
-      Headcount.style.display = 'inline-block'
-    }
-    else (selectElement.value === 'Yes') {
-      labelElement.style.top = '-2em';
-    }
-});
-
   form.addEventListener("submit", e => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(form);
-    const attending = formData.get("attending") === "Yes";
-
-    fetch(form.action, {
+      fetch(form.action, {
       method: "POST",
       body: formData,
       mode: "no-cors"
@@ -181,6 +192,16 @@
     window.addEventListener("scroll", closeHandler, { once: true });
   });
 });
-</script>
+    
+  selectElement.addEventListener('change', () => {
+    if (selectElement.value === 'Yes') {
+      labelElement.style.top = '-2em';
+      Headcount.style.display = 'inline-block'
+    }
+    else (selectElement.value === 'No') {
+      labelElement.style.top = '-2em';
+    }
+});
+</script> */
   </section>
 </body></html>
