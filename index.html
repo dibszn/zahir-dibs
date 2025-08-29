@@ -13,13 +13,11 @@
         border:none; 
         margin:0;
       }
-      
       .Name_fieldContainer {
       position: relative;
       height: 100%;
       width: 45%;
     }
-      
     .msg_fieldContainer, .Headcount_fieldContainer {
       position: relative;
       height: 100%;
@@ -46,33 +44,24 @@
         left:10px;
     }
     headcountlabel, namelabel {
-        top: 35%;
-    }
+        top: 35%;  }
     msglabel{
-        top:42%;
-    }
+        top:42%;  }
     selectlabel {
-      top: 30%;
-    }
+      top: 30%;  }
     .form__input:hover {
-      border: 0.5px solid #383838;
-    }
+      border: 0.5px solid #383838;  }
     .form__input:focus {
-      border: 0.5px solid #113c25;
-    }
+      border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
-    .form__input:not(:placeholder-shown) ~ headcountlabel, 
-input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
-    .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel,
-    .form__input:not(:placeholder-shown) ~ msglabel, .select__input:focus ~ selectlabel  {
-      top: -2em;
-    }
+    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .select__input:focus ~ selectlabel  {
+      top: -2em;  }
     select option {
       color: #113C25;
       background-color: transparent;
       font-family: sans-serif;
     }
-            #thanksModal {
+    #thanksModal {
         display: none;
         position: fixed;
         left: 0; top: 0;
@@ -81,8 +70,8 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         justify-content: center;
         align-items: center;
         z-index: 1000;
-      }
-      .modal-content {
+    }
+    .modal-content {
         background-color: white;
         padding: 20px;
         border-radius: 12px;
@@ -90,13 +79,13 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         max-width: 400px;
         margin: 0 auto;
         position: relative;
-      }
-      #Headcount {
-        display: none;
-      }
+    }
+    #Headcount {
+      display: none;
+    }
     </style>
 <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-around" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
-    <fieldset id="NameData" style="display: flex; justify-content: space-between;">
+    <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="firstname">First Name</namelabel>
@@ -105,8 +94,8 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
-    </fieldset>
-    <fieldset id="AttendanceData">
+    </div>
+    <div id="AttendanceData">
       <div style="position: relative; height: 100%; width: 100%;">
         <select id="attendance" name="attendance" class="select__input" placeholder=" ">
           <option style="display: none" selected=""> </option>
@@ -115,18 +104,19 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
         </select>
         <selectlabel for="attendance">Will you be attending?</selectlabel>
       </div>
-    </fieldset>
-    <fieldset id="Headcount">
+    </div>
+    <div id="Headcount">
       <div class="Headcount_fieldContainer">
         <input type="number" id="headcount" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
-    </fieldset><fieldset id="MessageData" style="height: 30%">
+    </div>
+  <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
         <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlywed?</msglabel>
     </div>
-  </fieldset>
+  </div>
   <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form
   <div id="thanksModal" style="display: none;">
@@ -138,13 +128,59 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     </div>
 
 <script>
-const selectElement = document.getElementById('attendance');
-const labelElement = document.querySelector('selectlabel');
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("bootstrapForm");
+  const modal = document.getElementById("thanksModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMessage = document.getElementById("modalMessage");
+  const selectElement = document.getElementById('attendance');
+  const GuestField = document.getElementById('Headcount');
+  const labelElement = document.querySelector('selectlabel');
 
-selectElement.addEventListener('change', () => {
-  if (selectElement.value === 'Yes' || selectElement.value === 'No') {
-    labelElement.style.top = '-2em';
-  }
+  selectElement.addEventListener('change', () => {
+    if (selectElement.value === 'Yes') {
+      labelElement.style.top = '-2em';
+      Headcount.style.display = 'inline-block'
+    }
+    else (selectElement.value === 'Yes') {
+      labelElement.style.top = '-2em';
+    }
+});
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const attending = formData.get("attending") === "Yes";
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors"
+    });
+    
+    modalTitle.textContent = attending ? "Thanks for the RSVP!" : "Oh no :(";
+    modalMessage.textContent = attending
+      ? "We look forward to seeing you at the wedding!"
+      : "We're sad to not have you at the celebration!";
+
+    form.reset();
+    guestsField.style.display = "none";
+    modal.style.display = "flex";
+
+    const closeHandler = () => {
+      modal.style.display = "none";
+      window.removeEventListener("click", closeHandler);
+      window.removeEventListener("touchstart", closeHandler);
+      window.removeEventListener("touchmove", closeHandler);
+      window.removeEventListener("scroll", closeHandler);
+    };
+
+    window.addEventListener("click", closeHandler, { once: true });
+    window.addEventListener("touchstart", closeHandler, { once: true });
+    window.addEventListener("touchmove", closeHandler, { once: true });
+    window.addEventListener("scroll", closeHandler, { once: true });
+  });
 });
 </script>
   </section>
