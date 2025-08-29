@@ -3,7 +3,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSVP Form</title>
-  <style>
+  
+</head>
+<body>
+  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2vmin; font-family:sans-serif">
+    <style>
     .fieldcontainer {
       position: relative;
       font-size: 2vmin;
@@ -13,7 +17,7 @@
       height: 100%;
       width: 45%;
     }
-    .form__input {
+    .form__input, .select__input {
       position: relative;
       height: 100%;
       width: 100%;
@@ -30,16 +34,15 @@
       color: #113c25;
       font-family: sans-serif;
       pointer-events: none;
-      transition: top 350ms ease, font-size 350ms ease;
       font-size: 1.5em;
     }
     namelabel {
       left: 7%;
-      top: 35%;
+      top: 35%;       transition: top 350ms ease;
     }
     selectlabel {
       left: 3%;
-      bottom: 27%;
+      bottom: 27%;       transition: top 350ms ease;
     }
     .form__input:hover {
       border: 0.5px solid #383838;
@@ -47,17 +50,9 @@
     .form__input:focus {
       border: 0.5px solid #113c25;
     }
-    input[type="text"]:focus ~ namelabel,
+    input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     .form__input:not(:placeholder-shown) ~ namelabel {
       top: -2em;
-      left: 0;
-      font-size: 1.5em;
-    }
-
-    select:focus ~ selectlabel, select:not(value=" ") ~ selectlabel   {
-      top: -2em;
-      left: 0;
-      font-size: 1.5em;
     }
     select option {
       color: #113C25;
@@ -65,11 +60,7 @@
       font-family: sans-serif;
     margin-left:3%;
     }
-  </style>
-</head>
-<body>
-  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2vmin; font-family:sans-serif">
-    <div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
+select:focus ~ selectlabel,.select__input:not(:placeholder-shown) {top: 4em;}</style><div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="firstname">First Name</namelabel>
@@ -81,8 +72,8 @@
     </div>
     <div id="AttendanceData" style="width: 80%; height: 8%;">
       <div style="position: relative; height: 100%; width: 100%;">
-        <select id="attendance" name="attendance" class="form__input">
-          <option style="display:none" selected value=" "> </option>
+        <select id="attendance" name="attendance" class="select__input">
+          <option style="display:none" selected="" placeholder=" "> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be</option>
         </select>
@@ -90,5 +81,4 @@
       </div>
     </div>
   </section>
-
 </body></html>
