@@ -88,11 +88,11 @@
 <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-around" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbx3sjj8aBY_0s8Rn8rtP0Vo2ZJenMXElbdCy28nN8BEysW64IvEf7J-OYKosuDrqD9WmQ/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input" required>
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required>
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input" required>
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
@@ -108,13 +108,13 @@
     </div>
     <div id="Headcount">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" autocomplete="off" placeholder=" " class="form__input">
+        <input type="number" id="headcount" name="headcount" autocomplete="off" placeholder=" " class="form__input">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
   <div id="MessageData" style="height: 30%">
       <div class="msg_fieldContainer">
-        <input type="text" id="message" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
         <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
     </div>
   </div>
@@ -129,6 +129,7 @@
     
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("bootstrapForm");
     const selectElement = document.getElementById("attendance");
     const labelElement = document.querySelector("selectlabel");
     const GuestField = document.getElementById("Headcount");
@@ -138,14 +139,14 @@
 
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
-        labelElement.style.top = "-2em"; 
+        labelElement.style.top = "-1.3em"; 
         GuestField.style.display = "inline-block";
-        GuestField.required;
+        GuestField.required = true;
         modalTitle.textContent = "Thanks for the confirmation!";
         modalMessage.textContent = "See you on 21st December 🥳";
       } 
       else if (selectElement.value === "No") {
-        labelElement.style.top = "-2em";       
+        labelElement.style.top = "-1.3em";       
         modalTitle.textContent = "Aw shucks 🥲";
         modalMessage.textContent = "See you when I see you";
       }
