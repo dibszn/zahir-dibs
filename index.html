@@ -92,7 +92,7 @@
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required>
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
@@ -146,7 +146,9 @@
         modalMessage.textContent = "See you on 21st December 🥳";
       } 
       else if (selectElement.value === "No") {
-        labelElement.style.top = "-1.3em";       
+        labelElement.style.top = "-1.3em";
+        GuestField.style.display = "no";
+        document.getElementById("headcount").removeAttribute("required");
         modalTitle.textContent = "Aw shucks 🥲";
         modalMessage.textContent = "See you when I see you";
       }
