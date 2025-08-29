@@ -3,72 +3,96 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSVP Form</title>
+  <style>
+    .fieldcontainer {
+      position: relative;
+      font-size: 2vmin;
+    }
+    .Name_fieldContainer {
+      position: relative;
+      height: 100%;
+      width: 45%;
+    }
+    .form__input {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      outline: none;
+      color: #113c25;
+    }
+    namelabel {
+      position: absolute;
+      background: transparent;
+      color: #113c25;
+      font-family: sans-serif;
+      left: 7%;
+      top: 35%;
+      pointer-events: none;
+      transition: top 350ms ease;
+      font-size: 1.5em;
+    }
+    selectlabel {
+      position: absolute;
+      background: transparent;
+      color: #113c25;
+      font-family: sans-serif;
+      left: 3%;
+      bottom: 27%;
+      pointer-events: none;
+      transition: top 350ms ease;
+      font-size: 1.5em;
+    }
+    .form__input:hover {
+      border: 0.5px solid #383838;
+    }
+    .form__input:focus {
+      border: 0.5px solid #113c25;
+    }
+    input[type="text"]:focus ~ namelabel,
+    .form__input:not(:placeholder-shown) ~ namelabel {
+      top: -2em;
+      left: 0;
+      font-size: 1.5em;
+    }
+
+    select:focus ~ selectlabel, select:not(:placeholder-shown) ~ selectlabel {
+      top: -2em;
+      left: 0;
+      font-size: 1.5em;
+    }
+    select option {
+      color: #113C25;
+      background-color: transparent;
+      font-family: sans-serif;
+    margin-left:3%;
+    }
+  </style>
 </head>
 <body>
-  <style>    
-      .fieldcontainer {
-        position: relative; font-size: 2vmin;
-      }
-
-      .Name_fieldContainer {
-        position: relative;
-        height: 100%;
-        width: 45%;
-        background: #FFFFFF;
-        border: 0.5px solid #fff;
-        border-radius: 0.5em;
-        outline: none;
-        color: #fff; font-size: 2vmin;
-      }
-
-      .form__input {
-        position: relative;
-        height: 100%;
-        width: 100%;
-        background: #FFFFFF;
-        border: 0.5px solid #fff;
-        border-radius: 0.5em;
-        outline: none;
-        color: #fff;
-      }
-
-      label {
-        position: absolute;
-        background: transparent;
-        color: #113c25;
-        font-family: sans-serif;
-        left: 7%;
-        top: 35%;
-        cursor: pointer;
-        transition: top 350ms ease;
-        font-size: 1.5em;
-      }
-
-      .form__input:hover {
-        border: 0.5px solid #383838;
-      }
-
-      .form__input:focus {
-        border: 0.5px solid #113c25;
-      }
-
-      input[type="text"]:focus ~ label,
-      .form__input:not(:placeholder-shown).form__input:not(:focus) ~ label {
-        top: -2em;
-        left: 0;
-        font-size: 1.5em;
-      }
-  </style>
-<section style="width:100vw; height: 100vh; background: rgb(230, 228, 221);display: flex; flex-direction: column; justify-content: center; align-items: center">
-<div id="NameData" style="width: 80%; height: 8%; display:flex; justify-content: space-between">
-  <div class="Name_fieldContainer">
-      <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
-      <label for="firstname">First Name</label>
+  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-size: 2vmin; font-family:sans-serif">
+    <div id="NameData" style="width: 80%; height: 8%; display: flex; justify-content: space-between">
+      <div class="Name_fieldContainer">
+        <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
+        <namelabel for="firstname">First Name</namelabel>
+      </div>
+      <div class="Name_fieldContainer">
+        <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
+        <namelabel for="lastname">Last Name</namelabel>
+      </div>
     </div>
-  <div class="Name_fieldContainer">
-      <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
-      <label for="lastname">Last Name</label>
+    <div id="AttendanceData" style="width: 80%; height: 8%;">
+      <div style="position: relative; height: 100%; width: 100%;">
+        <select id="attendance" name="attendance" class="form__input">
+          <option style="display:none" selected=""> </option>
+          <option value="Yes">Yes, I am!</option>
+          <option value="No">No, I won't be</option>
+        </select>
+        <selectlabel for="attendance">Will you be attending?</selectlabel>
+      </div>
     </div>
-</div></section>
+  </section>
 
 </body></html>
