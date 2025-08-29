@@ -6,7 +6,7 @@
   <title>RSVP Form</title>
 </head>
 <body>
-  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; align-items: center; font-size: 2vmin; font-family:sans-serif; gap: 5vmin; justify-content: space-around">
+  <section style="width:100vw; height: 100vh; background: rgb(230, 228, 221); display: flex; flex-direction: column; align-items: center; font-size: 2vmin; font-family:sans-serif; gap: 5vmin; justify-content: space-between; padding: 3% 2%;">
     <style>    
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
@@ -85,30 +85,30 @@
       display: none;
     }
     </style>
-<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-around" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec">    
+<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain; font-weight: bold" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required>
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required>
+        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
     <div id="AttendanceData">
-      <div style="position: relative; height: 100%; width: 103%;">
-        <select id="attendance" name="attendance" class="select__input" placeholder=" " required>
+      <div style="position: relative; height: 100%; width: 102%;">
+        <select id="attendance" name="attendance" class="select__input" placeholder=" " required="">
           <option style="display: none" selected=""> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be attending.</option>
         </select>
-        <selectlabel for="attendance">Will you be attending?</selectlabel>
+        <selectlabel for="attendance" style="top: -1.3em;">Will you be attending?</selectlabel>
       </div>
     </div>
-    <div id="Headcount">
+    <div id="Headcount" style="display: inline-block;">
       <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input" required="">
         <headcountlabel for="headcount">Number of Guests</headcountlabel>
       </div>
     </div>
@@ -120,13 +120,12 @@
   </div>
   <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
-  <div id="countYes" style="font-size: 2em; color: #113c25;">
-    Total RSVPs:<span id="confirmation"></span>
+  <div id="countYes" style="font-size: 1.5em; color: #113c25;"><p>Attendees: <span id="confirmation">109</span></p>
   </div>
   <div id="thanksModal" style="display: none;">
       <div class="modal-content">
-        <h2 id="modalTitle" style="font-size: 2em;">Thanks for the RSVP!</h2>
-        <p id="modalMessage" style="font-size: 1.5em;">We look forward to seeing you at the wedding!</p>
+        <h2 id="modalTitle" style="font-size: 2em;">Thanks for the confirmation!</h2>
+        <p id="modalMessage" style="font-size: 1.5em;">See you on 21st December 🥳</p>
       </div>
   </div>
 <script>
