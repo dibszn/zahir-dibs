@@ -9,7 +9,7 @@
     <style>    
       #NameData, #AttendanceData, #Headcount, #MessageData { 
         width: 100%; 
-        height:10%; 
+        /* height:10%; */ 
         border:none; 
         margin:0;
       }
@@ -137,9 +137,9 @@
 selectElement.addEventListener("change", () => {
   if (selectElement.value === "Yes") {
     labelElement.style.top = "-2em"; 
-      GuestField.style.display = "inline-block";
-      modalTitle.textContent = "Thanks for the confirmation!";
-      modalMessage.textContent = "See you on 21st December 🥳";
+    GuestField.style.display = "inline-block";
+    modalTitle.textContent = "Thanks for the confirmation!";
+    modalMessage.textContent = "See you on 21st December 🥳";
   } 
   else if (selectElement.value === "No") {
     labelElement.style.top = "-2em";       
