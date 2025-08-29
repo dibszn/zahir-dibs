@@ -99,16 +99,15 @@ input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel,
     </div>
   </div>
 
-<script>const selectElement = document.getElementById('attendance');
-const labelElement = document.getElementById('selectlabel');
+<script>
+const selectElement = document.getElementById('attendance');
+const labelElement = document.querySelector('selectlabel');
 
 selectElement.addEventListener('change', () => {
-  if (selectElement.value === 'Yes') {
-    labelElement.style.top = '-2em';
-  } else if (selectElement.value === 'No') {
+  if (selectElement.value === 'Yes' || selectElement.value === 'No') {
     labelElement.style.top = '-2em';
   }
-});\
+});
 </script>
   </section>
 </body></html>
