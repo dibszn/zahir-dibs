@@ -57,7 +57,7 @@
       border: 0.5px solid #113c25;  }
     input[id="headcount"]:focus ~ headcountlabel,
     .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .select__input:focus ~ selectlabel  {
-      top: -1em;  }
+      top: -1.5em;  }
     select option {
       color: #113C25;
       background-color: transparent;
@@ -88,17 +88,17 @@
 <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-around" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbzzCDSApPW3vl9dzXHTQJTk5nKka13WYc8kMjRlCZ4Kn9u8wN07h1nV4DjUeUSeRWXJIg/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="firstname" autocomplete="off" placeholder=" " class="form__input" required>
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
-        <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input">
+        <input type="text" id="lastname" autocomplete="off" placeholder=" " class="form__input" required>
         <namelabel for="lastname">Last Name</namelabel>
       </div>
     </div>
     <div id="AttendanceData">
       <div style="position: relative; height: 100%; width: 103%;">
-        <select id="attendance" name="attendance" class="select__input" placeholder=" ">
+        <select id="attendance" name="attendance" class="select__input" placeholder=" " required>
           <option style="display: none" selected=""> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be attending.</option>
@@ -140,6 +140,7 @@
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-2em"; 
         GuestField.style.display = "inline-block";
+        GuestField.required;
         modalTitle.textContent = "Thanks for the confirmation!";
         modalMessage.textContent = "See you on 21st December 🥳";
       } 
