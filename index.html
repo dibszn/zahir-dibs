@@ -54,7 +54,7 @@
       font-size: 1.5em;
     }
 
-    select:focus ~ selectlabel, select:not([value=""]) ~ selectlabel   {
+    select:focus ~ selectlabel, select:not(value=" ") ~ selectlabel   {
       top: -2em;
       left: 0;
       font-size: 1.5em;
@@ -82,7 +82,7 @@
     <div id="AttendanceData" style="width: 80%; height: 8%;">
       <div style="position: relative; height: 100%; width: 100%;">
         <select id="attendance" name="attendance" class="form__input">
-          <option style="display:none" selected value=""> </option>
+          <option style="display:none" selected value=" "> </option>
           <option value="Yes">Yes, I am!</option>
           <option value="No">No, I won't be</option>
         </select>
