@@ -151,7 +151,7 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
     </style>
-<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec">    
+<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
         <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
@@ -216,15 +216,23 @@
     const headcount = document.getElementById("headcount");
     let attendeeCount = null; 
     
+    // 🔹 Function to fetch live sum from Apps Script
     async function fetchAttendeeCount() {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
-      const data = await response.json();
-      attendeeCount = data.totalcount;
-      document.getElementById("confirmation").innerText = attendeeCount; 
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec");
+        const data = await response.json();
+        attendeeCount = data.totalcount;
+        document.getElementById("confirmation").innerText = attendeeCount; 
+      } catch (err) {
+        console.error("Error fetching attendee count:", err);
+      }
     } 
 
-    fetchAttendeeCount(); 
+    // Run immediately once
+    fetchAttendeeCount();
+    setInterval(fetchAttendeeCount, 7000);
 
+    // --- Existing code for select & form handling ---
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
@@ -243,96 +251,98 @@
     });
 
     function showError(input, message) {
-    const oldError = input.parentElement.querySelector(".error");
-    if (oldError) oldError.remove();
+      const oldError = input.parentElement.querySelector(".error");
+      if (oldError) oldError.remove();
 
-    const error = document.createElement("div");
-    error.className = "error";
-    error.textContent = message;
-    input.parentElement.appendChild(error);
+      const error = document.createElement("div");
+      error.className = "error";
+      error.textContent = message;
+      input.parentElement.appendChild(error);
 
-    input.addEventListener("input", () => error.remove(), { once: true });
-    input.addEventListener("change", () => error.remove(), { once: true });
+      input.addEventListener("input", () => error.remove(), { once: true });
+      input.addEventListener("change", () => error.remove(), { once: true });
     }
 
     const customSelect = document.querySelector(".custom-select");
-const selectDisplay = document.getElementById("attendanceDisplay");
-const selectHidden = document.getElementById("attendance");
-const optionsBox = document.getElementById("attendanceOptions");
+    const selectDisplay = document.getElementById("attendanceDisplay");
+    const selectHidden = document.getElementById("attendance");
+    const optionsBox = document.getElementById("attendanceOptions");
 
-      function centerSelectDisplay() {
-    const height = selectDisplay.offsetHeight;
-    selectDisplay.style.lineHeight = height + "px";
-  }
-  centerSelectDisplay();
-  window.addEventListener("resize", centerSelectDisplay);
-
-selectDisplay.addEventListener("click", () => {
-  const isOpen = optionsBox.style.display === "block";
-  optionsBox.style.display = isOpen ? "none" : "block";
-  selectDisplay.classList.toggle("select-arrow-active", !isOpen);
-});
-
-optionsBox.querySelectorAll("div").forEach(option => {
-  option.addEventListener("click", () => {
-    selectDisplay.textContent = option.textContent;
-    selectHidden.value = option.dataset.value;
-
-    selectHidden.dispatchEvent(new Event("change"));
-
-    optionsBox.style.display = "none";
-    selectDisplay.classList.remove("select-arrow-active");
+    function centerSelectDisplay() {
+      const height = selectDisplay.offsetHeight;
+      selectDisplay.style.lineHeight = height + "px";
+    }
     centerSelectDisplay();
-  });
-});
+    window.addEventListener("resize", centerSelectDisplay);
 
-window.addEventListener("click", e => {
-  if (!customSelect.contains(e.target)) {
-    optionsBox.style.display = "none";
-  }
-});
-    
-    form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    if (!firstname.value.trim()) {
-      showError(firstname, "Please enter your first name 🌸");
-      return;
-    }
-
-    if (!lastname.value.trim()) {
-      showError(lastname, "Please enter your last name ✨");
-      return;
-    }
-      
-    const formData = new FormData(form);  
-      
-    fetch(form.action, {
-      method: "POST",
-      body: formData,
-      mode: "no-cors"
+    selectDisplay.addEventListener("click", () => {
+      const isOpen = optionsBox.style.display === "block";
+      optionsBox.style.display = isOpen ? "none" : "block";
+      selectDisplay.classList.toggle("select-arrow-active", !isOpen);
     });
 
-    fetchAttendeeCount();
+    optionsBox.querySelectorAll("div").forEach(option => {
+      option.addEventListener("click", () => {
+        selectDisplay.textContent = option.textContent;
+        selectHidden.value = option.dataset.value;
 
-    form.reset();
-    GuestField.style.display = "none";
-    modal.style.display = "flex";
+        selectHidden.dispatchEvent(new Event("change"));
 
-    const closeHandler = () => {
-      modal.style.display = "none";
-      window.removeEventListener("click", closeHandler);
-      window.removeEventListener("touchstart", closeHandler);
-      window.removeEventListener("touchmove", closeHandler);
-      window.removeEventListener("scroll", closeHandler);
-    };
+        optionsBox.style.display = "none";
+        selectDisplay.classList.remove("select-arrow-active");
+        centerSelectDisplay();
+      });
+    });
 
-    window.addEventListener("click", closeHandler, { once: true });
-    window.addEventListener("touchstart", closeHandler, { once: true });
-    window.addEventListener("touchmove", closeHandler, { once: true });
-    window.addEventListener("scroll", closeHandler, { once: true });
+    window.addEventListener("click", e => {
+      if (!customSelect.contains(e.target)) {
+        optionsBox.style.display = "none";
+      }
+    });
+    
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      if (!firstname.value.trim()) {
+        showError(firstname, "Please enter your first name 🌸");
+        return;
+      }
+
+      if (!lastname.value.trim()) {
+        showError(lastname, "Please enter your last name ✨");
+        return;
+      }
+      
+      const formData = new FormData(form);  
+      
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      // still call manually to reduce lag before next interval
+      fetchAttendeeCount();
+
+      form.reset();
+      GuestField.style.display = "none";
+      modal.style.display = "flex";
+
+      const closeHandler = () => {
+        modal.style.display = "none";
+        window.removeEventListener("click", closeHandler);
+        window.removeEventListener("touchstart", closeHandler);
+        window.removeEventListener("touchmove", closeHandler);
+        window.removeEventListener("scroll", closeHandler);
+      };
+
+      window.addEventListener("click", closeHandler, { once: true });
+      window.addEventListener("touchstart", closeHandler, { once: true });
+      window.addEventListener("touchmove", closeHandler, { once: true });
+      window.addEventListener("scroll", closeHandler, { once: true });
+    });
   });
-});
 </script>
+
   </section>
 </body></html>
