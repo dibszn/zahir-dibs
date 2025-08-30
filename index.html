@@ -46,7 +46,7 @@
       color: #113c25;
       padding-left: 10px;
     }
-    .select-items {
+    .select__input-items {
       position: absolute;
       margin-top:5px;
       background-color: #ffffff;
@@ -176,7 +176,7 @@
       const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
       const data = await response.json();
       attendeeCount = data.totalcount;
-      confirmationEl.innerText = attendeeCount; 
+      document.getElementById("confirmation").innerText = attendeeCount; 
     } 
 
     fetchAttendeeCount(); 
