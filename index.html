@@ -165,13 +165,13 @@
     <div id="AttendanceData">
       <div class="custom-select">
         <div class="select__input" id="attendanceDisplay"> </div>
-        <select id="attendance" name="attendance" required style="display:none;">
+        <select id="attendance" name="attendance"  style="display:none;">
           <option value="" disabled selected></option>
           <option value="Yes">Yes, I will be!</option>
           <option value="No">No, I won't be attending.</option>
         </select>
 
-        <div class="select__input-items" id="attendanceOptions" style="display:none;">
+        <div class="select__input-items" id="attendanceOptions" required style="display:none;">
           <div data-value="Yes">Yes, I will be!</div>
           <div data-value="No">No, I won't be attending.</div>
           
@@ -193,8 +193,7 @@
   </div>
   <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
-  <div id="countYes" style="font-size: 1.5em; color: #113c25;"><p>Total attendees: <span id="confirmation">109</span></p>
-  </div>
+
   <div id="thanksModal" style="display: none;">
       <div class="modal-content">
         <h2 id="modalTitle" style="font-size: 2em;">Thanks for the confirmation!</h2>
@@ -214,25 +213,8 @@
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-    let attendeeCount = null; 
     
-    // 🔹 Function to fetch live sum from Apps Script
-    async function fetchAttendeeCount() {
-      try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec");
-        const data = await response.json();
-        attendeeCount = data.totalcount;
-        document.getElementById("confirmation").innerText = attendeeCount; 
-      } catch (err) {
-        console.error("Error fetching attendee count:", err);
-      }
-    } 
 
-    // Run immediately once
-    fetchAttendeeCount();
-    setInterval(fetchAttendeeCount, 7000);
-
-    // --- Existing code for select & form handling ---
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
         labelElement.style.top = "-1.3em"; 
@@ -320,9 +302,6 @@
         body: formData,
         mode: "no-cors"
       });
-
-      // still call manually to reduce lag before next interval
-      fetchAttendeeCount();
 
       form.reset();
       GuestField.style.display = "none";
