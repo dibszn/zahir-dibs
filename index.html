@@ -84,24 +84,12 @@
     #Headcount {
       display: none;
     }
-    .tooltip {
-      position: absolute;
-      background: #ffffff; 
-      color: #113c25;
-      font-size: 1em;
-      font-family: 'Pinyon Script', cursive;
-      padding: 6px 10px;
-      border-radius: 6px;
-      top: 1.5em;
-      left: 5px;
-      white-space: nowrap;
-      z-index: 2000;
-    }
     </style>
 <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="" oninvalid="this.setCustomValidity('Please fill in your first name!!')"
+       oninput="this.setCustomValidity('')"/>>
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
@@ -174,34 +162,8 @@
       }
     });
 
-    function showTooltip(input, message) {
-    const oldTip = input.parentElement.querySelector(".tooltip");
-    if (oldTip) oldTip.remove();
-
-    const tooltip = document.createElement("div");
-    tooltip.className = "tooltip";
-    tooltip.textContent = message;
-    input.parentElement.appendChild(tooltip);
-
-    input.addEventListener("input", () => {
-      tooltip.remove();
-    }, { once: true });
-    input.addEventListener("change", () => {
-      tooltip.remove();
-    }, { once: true });
-  }
-
     form.addEventListener("submit", e => {
     e.preventDefault();
-
-    if (!firstname.value.trim()) {
-      showTooltip(firstname, "Please enter your first name 🌸");
-      return;
-    }
-    if (!lastname.value.trim()) {
-      showTooltip(lastname, "Please enter your last name ✨");
-      return;
-    }
       
     const formData = new FormData(form);  
       
