@@ -84,12 +84,19 @@
     #Headcount {
       display: none;
     }
+    #error {
+      width: 100%;
+      font-size: 80%;
+      color: #113c25;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
     </style>
 <form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec">    
     <div id="NameData" style="display: flex; justify-content: space-between;">
       <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="" oninvalid="this.setCustomValidity('Please fill in your first name!!')"
-       oninput="this.setCustomValidity('')"/>>
+        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
         <namelabel for="firstname">First Name</namelabel>
       </div>
       <div class="Name_fieldContainer">
@@ -139,6 +146,10 @@
     const modalTitle = document.getElementById("modalTitle");
     const modalMessage = document.getElementById("modalMessage");
 
+    const firstname = document.getElementById("firstname");
+    const lastname = document.getElementById("lastname");
+    const headcount = document.getElementById("headcount");
+
     (async () => {
       const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
       const data = await response.json();
@@ -162,8 +173,31 @@
       }
     });
 
+    function showError(input, message) {
+    const oldError = input.parentElement.querySelector("#error");
+    if (oldError) oldError.remove();
+
+    const error = document.createElement("div");
+    error.id = "error";
+    error.textContent = message;
+    input.parentElement.appendChild(error);
+
+    input.addEventListener("input", () => error.remove(), { once: true });
+    input.addEventListener("change", () => error.remove(), { once: true });
+    }
+    
     form.addEventListener("submit", e => {
     e.preventDefault();
+
+    if (!firstname.value.trim()) {
+      showError(firstname, "Please enter your first name 🌸");
+      return;
+    }
+
+    if (!lastname.value.trim()) {
+      showError(lastname, "Please enter your last name ✨");
+      return;
+    }
       
     const formData = new FormData(form);  
       
