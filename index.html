@@ -24,7 +24,7 @@
       height: 100%;
       width: 100%;
     }
-    .form__input, .select__input {
+    .form__input {
       position: relative;
       height: 100%;
       width: 100%;
@@ -34,6 +34,27 @@
       font-size:1.5em;
       color: #113c25;
       padding-left: 10px;
+    }
+    .select__input {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #FFFFFF;
+      border: 0.5px solid #fff;
+      border-radius: 0.5em;
+      font-size:1.5em;
+      color: #113c25;
+      padding-left: 10px;
+    }
+    .select-items {
+      position: absolute;
+      margin-top:5px;
+      background-color: #ffffff;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      border-radius:15px;
     }
     namelabel, selectlabel, msglabel, headcountlabel {
       position: absolute;
@@ -149,20 +170,16 @@
     const firstname = document.getElementById("firstname");
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
-
-    async function updateAttendeeCount() {
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec"
-      );
+    let attendeeCount = null; 
+    
+    async function fetchAttendeeCount() {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
       const data = await response.json();
-      document.getElementById("confirmation").innerText = data.totalcount;
-    } catch (err) {
-      console.error("Error fetching attendee count:", err);
-    }
-  }
+      attendeeCount = data.totalcount;
+      confirmationEl.innerText = attendeeCount; 
+    } 
 
-  updateAttendeeCount();
+    fetchAttendeeCount(); 
 
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
@@ -215,7 +232,7 @@
       mode: "no-cors"
     });
 
-    updateAttendeeCount();
+    fetchAttendeeCount();
 
     form.reset();
     GuestField.style.display = "none";
