@@ -84,7 +84,7 @@
     #Headcount {
       display: none;
     }
-    #error {
+    .error {
       width: 100%;
       font-size: 80%;
       color: #113c25;
@@ -128,7 +128,7 @@
   </div>
   <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 2%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
 </form>
-  <div id="countYes" style="font-size: 1.5em; color: #113c25;"><p>Attendees: <span id="confirmation">109</span></p>
+  <div id="countYes" style="font-size: 1.5em; color: #113c25;"><p>Total attendees: <span id="confirmation">109</span></p>
   </div>
   <div id="thanksModal" style="display: none;">
       <div class="modal-content">
@@ -150,11 +150,19 @@
     const lastname = document.getElementById("lastname");
     const headcount = document.getElementById("headcount");
 
-    (async () => {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec");
+    async function updateAttendeeCount() {
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwV9uRGMkG4z8tHl5nzg9-3yMQRCHpA-mNmtrZ_aEQUtD7GoBC25jtLtY_BR8IB4_o_Vg/exec"
+      );
       const data = await response.json();
       document.getElementById("confirmation").innerText = data.totalcount;
-    })();
+    } catch (err) {
+      console.error("Error fetching attendee count:", err);
+    }
+  }
+
+  updateAttendeeCount();
 
     selectElement.addEventListener("change", () => {
       if (selectElement.value === "Yes") {
@@ -174,11 +182,11 @@
     });
 
     function showError(input, message) {
-    const oldError = input.parentElement.querySelector("#error");
+    const oldError = input.parentElement.querySelector(".error");
     if (oldError) oldError.remove();
 
     const error = document.createElement("div");
-    error.id = "error";
+    error.className = "error";
     error.textContent = message;
     input.parentElement.appendChild(error);
 
@@ -206,6 +214,8 @@
       body: formData,
       mode: "no-cors"
     });
+
+    updateAttendeeCount();
 
     form.reset();
     GuestField.style.display = "none";
