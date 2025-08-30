@@ -132,6 +132,7 @@
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content:center;
 }
 
 .select__input-items div:hover {
@@ -245,25 +246,29 @@ const selectDisplay = document.getElementById("attendanceDisplay");
 const selectHidden = document.getElementById("attendance");
 const optionsBox = document.getElementById("attendanceOptions");
 
-// toggle dropdown
+      function centerSelectDisplay() {
+    const height = selectDisplay.offsetHeight;
+    selectDisplay.style.lineHeight = height + "px";
+  }
+  centerSelectDisplay();
+  window.addEventListener("resize", centerSelectDisplay);
+
 selectDisplay.addEventListener("click", () => {
   optionsBox.style.display = optionsBox.style.display === "block" ? "none" : "block";
 });
 
-// handle option clicks
 optionsBox.querySelectorAll("div").forEach(option => {
   option.addEventListener("click", () => {
     selectDisplay.textContent = option.textContent;
     selectHidden.value = option.dataset.value; // update hidden <select>
 
-    // 🔑 trigger your existing JS listener
     selectHidden.dispatchEvent(new Event("change"));
 
     optionsBox.style.display = "none";
+    centerSelectDisplay();
   });
 });
 
-// close if clicked outside
 window.addEventListener("click", e => {
   if (!customSelect.contains(e.target)) {
     optionsBox.style.display = "none";
