@@ -333,10 +333,7 @@ const firstname = form.querySelector("#firstname");
       }
 
       if (!lastname.value.trim()) {
-        showError(email, "Please enter your last name 🌸");
-        valid = false;
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        showError(email, "Please enter a valid email 🌸");
+        showError(lastname, "Please enter your last name 🌸");
         valid = false;
       }
 if (!attendance.value.trim()) {
