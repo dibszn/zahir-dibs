@@ -344,11 +344,10 @@ if (!attendance.value.trim()) {
   valid = false;
 }
 
-if (attendance.value === "Yes" && !GuestField.value.trim()) {
-  showError(GuestField, "Please enter number of guests attending 🌸");
-  valid = false;
-}
-
+if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+      showError(headcount, "Please enter number of guests 🌸");
+      valid = false;
+    }
       if (!valid) return;
 
           const formData = new FormData(form);  
