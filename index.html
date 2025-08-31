@@ -329,17 +329,23 @@ const firstname = form.querySelector("#firstname");
       const lastname = form.querySelector("#lastname");
       const attendance = form.querySelector("#attendance");
 
-      if (!firstname.value.trim()) {
-        showError(firstname, "Please enter your first name 🌸");
-        valid = false;
-      }
+if (!firstname.value.trim()) {
+  showError(firstname, "Please enter your first name 🌸");
+  valid = false;
+}
 
-      if (!lastname.value.trim()) {
-        showError(lastname, "Please enter your last name 🌸");
-        valid = false;
-      }
+if (!lastname.value.trim()) {
+  showError(lastname, "Please enter your last name 🌸");
+  valid = false;
+}
+
 if (!attendance.value.trim()) {
   showError(attendance, "Please select your attendance 🌸");
+  valid = false;
+}
+
+if (attendance.value === "Yes" && !GuestField.value.trim()) {
+  showError(GuestField, "Please enter number of guests attending 🌸");
   valid = false;
 }
 
