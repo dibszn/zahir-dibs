@@ -323,6 +323,8 @@ function showError(input, message) {
         form.addEventListener("submit", e => {
           e.preventDefault();
 
+          let valid = true;
+
 const firstname = form.querySelector("#firstname");
       const lastname = form.querySelector("#lastname");
       const attendance = form.querySelector("#attendance");
@@ -341,9 +343,7 @@ if (!attendance.value.trim()) {
   valid = false;
 }
 
-      if (valid) {
-        form.submit();
-      }
+      if (!valid) return;
 
           const formData = new FormData(form);  
           fetch(form.action, { method: "POST", body: formData, mode: "no-cors" });
