@@ -324,7 +324,7 @@ function showError(input, message) {
           e.preventDefault();
 
 const firstname = form.querySelector("#firstname");
-      const email = form.querySelector("#email");
+      const lastname = form.querySelector("#lastname");
       const attendance = form.querySelector("#attendance");
 
       if (!firstname.value.trim()) {
@@ -332,18 +332,17 @@ const firstname = form.querySelector("#firstname");
         valid = false;
       }
 
-      if (!email.value.trim()) {
-        showError(email, "Please enter your email 🌸");
+      if (!lastname.value.trim()) {
+        showError(email, "Please enter your last name 🌸");
         valid = false;
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
         showError(email, "Please enter a valid email 🌸");
         valid = false;
       }
-
-      if (!attendance.value.trim()) {
-        showError(attendance, "Please select your attendance 🌸");
-        valid = false;
-      }
+if (!attendance.value.trim()) {
+  showError(attendance, "Please select your attendance 🌸");
+  valid = false;
+}
 
       if (valid) {
         form.submit();
