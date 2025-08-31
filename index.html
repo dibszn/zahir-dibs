@@ -325,10 +325,6 @@ function showError(input, message) {
 
           let valid = true;
 
-const firstname = form.querySelector("#firstname");
-      const lastname = form.querySelector("#lastname");
-      const attendance = form.querySelector("#attendance");
-
 if (!firstname.value.trim()) {
   showError(firstname, "Please enter your first name 🌸");
   valid = false;
@@ -344,7 +340,7 @@ if (!attendance.value.trim()) {
   valid = false;
 }
 
-if (attendance.value === "Yes" && (!headcount.value.trim() || Number(headcount.value) < 1)) {
+if (attendance.value === "Yes" && (!headcount.value.trim())) {
       showError(headcount, "Please enter number of guests 🌸");
       valid = false;
     }
