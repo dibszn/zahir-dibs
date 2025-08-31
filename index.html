@@ -1,8 +1,39 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Your tooltip styles -->
+  <style>
+    .html5tooltip-box {
+      background-color:#2A2A2A;
+      border-radius:2px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.15),0 0 10px rgba(255,255,255,.15);
+      color:#F7F7F7;
+      font-family:arial,sans-serif;
+      font-size:11px;
+      font-weight:700;
+      padding: 6px 8px;
+      position: absolute;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .html5tooltip-box:before {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+    }
+    /* arrow at the top */
+    .html5tooltip-bottom .html5tooltip-box:before {
+      top: -12px; left: 10px;
+      border-bottom-color: #2A2A2A;
+    }
+    .scalein-from { opacity:0; transform:scale3d(.7,.7,.7); }
+    .scalein-to { opacity:1; transform:scale3d(1,1,1); transition:opacity .3s, transform .3s; }
+  </style>
+
   <title>RSVP Form</title>
 </head>
 <body>
@@ -15,51 +46,53 @@
         margin: 0;
       }
       .Name_fieldContainer {
-      position: relative;
-      height: 100%;
-      width: 45%;
-    }
-    .msg_fieldContainer, .Headcount_fieldContainer {
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
-    .form__input {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background: #FFFFFF;
-      border: 0.5px solid #fff;
-      border-radius: 0.5em;
-      font-size:1.5em;
-      color: #113c25;
-      padding-left: 10px;
-    }
-    namelabel, selectlabel, msglabel, headcountlabel {
-      position: absolute;
-      background: transparent;
-      color: #113c25;
-      font-family: sans-serif;
-      pointer-events: none;
-      font-size: 1.5em;
-      transition: top 350ms ease;
-      left:10px;
-    }
-    headcountlabel, namelabel {
-        top: 35%;  }
-    msglabel {
-        top:42%;  }
-    selectlabel {
-      top: 30%;  }
-    .form__input:hover {
-      border: 0.5px solid #383838;  }
-    .form__input:focus {
-      border: 0.5px solid #113c25;  }
-    input[id="headcount"]:focus ~ headcountlabel,
-    .form__input:not(:placeholder-shown) ~ headcountlabel, input[id="firstname"]:focus ~ namelabel, input[id="lastname"]:focus ~ namelabel, .form__input:not(:placeholder-shown) ~ namelabel, input[id="message"]:focus ~ msglabel, .form__input:not(:placeholder-shown) ~ msglabel, .custom_select:focus ~ selectlabel  {
-      top: -1.3em;  }
+        position: relative;
+        height: 100%;
+        width: 45%;
+      }
+      .msg_fieldContainer, .Headcount_fieldContainer {
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      .form__input {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: #FFFFFF;
+        border: 0.5px solid #fff;
+        border-radius: 0.5em;
+        font-size:1.5em;
+        color: #113c25;
+        padding-left: 10px;
+      }
+      namelabel, selectlabel, msglabel, headcountlabel {
+        position: absolute;
+        background: transparent;
+        color: #113c25;
+        font-family: sans-serif;
+        pointer-events: none;
+        font-size: 1.5em;
+        transition: top 350ms ease;
+        left:10px;
+      }
+      headcountlabel, namelabel { top: 35%; }
+      msglabel { top:42%; }
+      selectlabel { top: 30%; }
+      .form__input:hover { border: 0.5px solid #383838; }
+      .form__input:focus { border: 0.5px solid #113c25; }
+      input[id="headcount"]:focus ~ headcountlabel,
+      .form__input:not(:placeholder-shown) ~ headcountlabel, 
+      input[id="firstname"]:focus ~ namelabel, 
+      input[id="lastname"]:focus ~ namelabel, 
+      .form__input:not(:placeholder-shown) ~ namelabel, 
+      input[id="message"]:focus ~ msglabel, 
+      .form__input:not(:placeholder-shown) ~ msglabel, 
+      .custom_select:focus ~ selectlabel  {
+        top: -1.3em;
+      }
 
-    #thanksModal {
+      #thanksModal {
         position: fixed;
         left: 0; top: 0;
         width: 100%; height: 100%;
@@ -67,8 +100,8 @@
         justify-content: center;
         align-items: center;
         z-index: 1000;
-    }
-    .modal-content {
+      }
+      .modal-content {
         background-color: white;
         padding: 20px;
         border-radius: 12px;
@@ -76,255 +109,244 @@
         max-width: 400px;
         margin: 0 auto;
         position: relative;
-    }
-    #Headcount {
-      display: none;
-    }
-    .error {
-      width: 100%;
-      font-size: 80%;
-      color: #113c25;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-.custom-select {
-  position: relative;
-  border-radius: 10px;
-  width: 100%; height:100%;
-}
-
-.custom-select select {
-  display: none;
-}
-
-#attendanceDisplay {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      background: #FFFFFF;
-      border: 0.5px solid #fff;
-      border-radius: 0.5em;
-      font-size:1.5em;
-      color: #113c25;
-      padding-left: 10px;
-}
-
-#attendanceDisplay::after {
-  position: absolute;
-  content: "";
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  border: 6px solid transparent;
-  border-color: #113c25 transparent transparent transparent;
-}
-
-#attendanceDisplay.select-arrow-active::after {
-  border-color: transparent transparent #113c25 transparent;
-  top: 45%;
-}
-
-#attendanceOptions {
-  position: absolute;
-  margin-top: 5px;
-  background-color: #ffffff;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  border-radius: 20px; border: 1px solid transparent;
-  border-color: transparent #113c25 #113c25 #113c25;
-}
-
-#attendanceOptions div {
-  padding: 5px;
-  cursor: pointer;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content:center;
-  color: #113c25;
-}
-
-#attendanceOptions div:hover,
-#attendanceOptions .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
-}
+      }
+      #Headcount { display: none; }
+      .custom-select {
+        position: relative;
+        border-radius: 10px;
+        width: 100%; height:100%;
+      }
+      .custom-select select { display: none; }
+      #attendanceDisplay {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background: #FFFFFF;
+        border: 0.5px solid #fff;
+        border-radius: 0.5em;
+        font-size:1.5em;
+        color: #113c25;
+        padding-left: 10px;
+      }
+      #attendanceDisplay::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-color: #113c25 transparent transparent transparent;
+      }
+      #attendanceDisplay.select-arrow-active::after {
+        border-color: transparent transparent #113c25 transparent;
+        top: 45%;
+      }
+      #attendanceOptions {
+        position: absolute;
+        margin-top: 5px;
+        background-color: #ffffff;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        border-radius: 20px; border: 1px solid transparent;
+        border-color: transparent #113c25 #113c25 #113c25;
+      }
+      #attendanceOptions div {
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content:center;
+        color: #113c25;
+      }
+      #attendanceOptions div:hover,
+      #attendanceOptions .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
     </style>
-<form style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain" id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec">    
-    <div id="NameData" style="display: flex; justify-content: space-between;">
-      <div class="Name_fieldContainer">
-        <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input" required="">
-        <namelabel for="firstname">First Name</namelabel>
-      </div>
-      <div class="Name_fieldContainer">
-        <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input" required="">
-        <namelabel for="lastname">Last Name</namelabel>
-      </div>
-    </div>
-    <div id="AttendanceData">
-      <div class="custom-select">
-        <div class="select__input" id="attendanceDisplay" style="line-height: 78px;"> </div>
-        <select id="attendance" name="attendance" style="display:none;">
-          <option value="" disabled="" selected=""></option>
-          <option value="Yes">Yes, I will be!</option>
-          <option value="No">No, I won't be attending.</option>
-        </select>
 
-        <div class="select__input-items" id="attendanceOptions" required="" style="display:none;">
-          <div style=" border:1px solid transparent;
-  border-color:  #113c25 transparent transparent transparent" data-value="Yes">Yes, I will be!</div>
-          <div data-value="No">No, I won't be attending.</div>
-          
+    <form id="bootstrapForm" method="POST" action="https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec" novalidate style="width:90%; height:90%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; object-fit: contain">    
+      <div id="NameData" style="display: flex; justify-content: space-between;">
+        <div class="Name_fieldContainer">
+          <input type="text" id="firstname" name="firstname" autocomplete="off" placeholder=" " class="form__input">
+          <namelabel for="firstname">First Name</namelabel>
         </div>
-                <selectlabel for="attendance">Will you be attending?</selectlabel>
+        <div class="Name_fieldContainer">
+          <input type="text" id="lastname" name="lastname" autocomplete="off" placeholder=" " class="form__input">
+          <namelabel for="lastname">Last Name</namelabel>
+        </div>
       </div>
-    </div>
-    <div id="Headcount" style="display: none;">
-      <div class="Headcount_fieldContainer">
-        <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
-        <headcountlabel for="headcount">Number of Guests</headcountlabel>
+      <div id="AttendanceData">
+        <div class="custom-select">
+          <div class="select__input" id="attendanceDisplay" style="line-height: 78px;"> </div>
+          <select id="attendance" name="attendance" style="display:none;">
+            <option value="" disabled selected></option>
+            <option value="Yes">Yes, I will be!</option>
+            <option value="No">No, I won't be attending.</option>
+          </select>
+          <div class="select__input-items" id="attendanceOptions" style="display:none;">
+            <div data-value="Yes">Yes, I will be!</div>
+            <div data-value="No">No, I won't be attending.</div>
+          </div>
+          <selectlabel for="attendance">Will you be attending?</selectlabel>
+        </div>
       </div>
-    </div>
-  <div id="MessageData" style="height: 30%">
-      <div class="msg_fieldContainer">
-        <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
-        <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
-    </div>
-  </div>
-  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
-</form>
+      <div id="Headcount" style="display: none;">
+        <div class="Headcount_fieldContainer">
+          <input type="number" id="headcount" name="headcount" min="1" autocomplete="off" placeholder=" " class="form__input">
+          <headcountlabel for="headcount">Number of Guests</headcountlabel>
+        </div>
+      </div>
+      <div id="MessageData" style="height: 30%">
+        <div class="msg_fieldContainer">
+          <input type="text" id="message" name="message" autocomplete="off" placeholder=" " class="form__input">
+          <msglabel for="message">Any wishes/messages for the newlyweds?</msglabel>
+        </div>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:0.7vmin; padding: 1% 5%; font-size: 1.3em; color:white; background-color: #113c25; border-radius:10px; border:none;">
+    </form>
 
-  <div id="thanksModal" style="display: none;">
+    <div id="thanksModal" style="display: none;">
       <div class="modal-content">
         <h2 id="modalTitle" style="font-size: 2em;">Thanks for the confirmation!</h2>
         <p id="modalMessage" style="font-size: 1.5em;">See you on 21st December 🥳</p>
       </div>
-  </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("bootstrapForm");
-    const selectElement = document.getElementById("attendance");
-    const labelElement = document.querySelector("selectlabel");
-    const GuestField = document.getElementById("Headcount");
-    const modal = document.getElementById("thanksModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalMessage = document.getElementById("modalMessage");
+    </div>
 
-    const firstname = document.getElementById("firstname");
-    const lastname = document.getElementById("lastname");
-    const headcount = document.getElementById("headcount");
-    
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("bootstrapForm");
+        const selectElement = document.getElementById("attendance");
+        const labelElement = document.querySelector("selectlabel");
+        const GuestField = document.getElementById("Headcount");
+        const modal = document.getElementById("thanksModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalMessage = document.getElementById("modalMessage");
 
-    selectElement.addEventListener("change", () => {
-      if (selectElement.value === "Yes") {
-        labelElement.style.top = "-1.3em"; 
-        GuestField.style.display = "block";
-        document.getElementById("headcount").setAttribute("required", "");
-        modalTitle.textContent = "Thanks for the confirmation!";
-        modalMessage.textContent = "See you on 21st December 🥳";
-      } 
-      else if (selectElement.value === "No") {
-        labelElement.style.top = "-1.3em";
-        GuestField.style.display = "none";
-        document.getElementById("headcount").removeAttribute("required");
-        modalTitle.textContent = "Aw shucks 🥲";
-        modalMessage.textContent = "See you when I see you";
-      }
-    });
+        const firstname = document.getElementById("firstname");
+        const lastname = document.getElementById("lastname");
+        const headcount = document.getElementById("headcount");
 
-    function showError(input, message) {
-      const oldError = input.parentElement.querySelector(".error");
-      if (oldError) oldError.remove();
+        // Show tooltip error
+        function showError(input, message) {
+          // Remove existing tooltip
+          const oldTooltip = input.parentElement.querySelector(".html5tooltip-box");
+          if (oldTooltip) oldTooltip.remove();
 
-      const error = document.createElement("div");
-      error.className = "error";
-      error.textContent = message;
-      input.parentElement.appendChild(error);
+          const tooltip = document.createElement("div");
+          tooltip.className = "html5tooltip-box scalein-to";
+          tooltip.textContent = message;
 
-      input.addEventListener("input", () => error.remove(), { once: true });
-      input.addEventListener("change", () => error.remove(), { once: true });
-    }
+          // Position tooltip below input
+          tooltip.style.top = (input.offsetTop + input.offsetHeight + 8) + "px";
+          tooltip.style.left = input.offsetLeft + "px";
 
-    const customSelect = document.querySelector(".custom-select");
-    const selectDisplay = document.getElementById("attendanceDisplay");
-    const selectHidden = document.getElementById("attendance");
-    const optionsBox = document.getElementById("attendanceOptions");
+          input.parentElement.style.position = "relative";
+          input.parentElement.appendChild(tooltip);
 
-    function centerSelectDisplay() {
-      const height = selectDisplay.offsetHeight;
-      selectDisplay.style.lineHeight = height + "px";
-    }
-    centerSelectDisplay();
-    window.addEventListener("resize", centerSelectDisplay);
+          // Remove on input
+          const removeTooltip = () => tooltip.remove();
+          input.addEventListener("input", removeTooltip, { once: true });
+          input.addEventListener("change", removeTooltip, { once: true });
+        }
 
-    selectDisplay.addEventListener("click", () => {
-      const isOpen = optionsBox.style.display === "block";
-      optionsBox.style.display = isOpen ? "none" : "block";
-      selectDisplay.classList.toggle("select-arrow-active", !isOpen);
-    });
+        // Attendance logic
+        selectElement.addEventListener("change", () => {
+          if (selectElement.value === "Yes") {
+            labelElement.style.top = "-1.3em"; 
+            GuestField.style.display = "block";
+            headcount.setAttribute("required", "");
+            modalTitle.textContent = "Thanks for the confirmation!";
+            modalMessage.textContent = "See you on 21st December 🥳";
+          } else if (selectElement.value === "No") {
+            labelElement.style.top = "-1.3em";
+            GuestField.style.display = "none";
+            headcount.removeAttribute("required");
+            modalTitle.textContent = "Aw shucks 🥲";
+            modalMessage.textContent = "See you when I see you";
+          }
+        });
 
-    optionsBox.querySelectorAll("div").forEach(option => {
-      option.addEventListener("click", () => {
-        selectDisplay.textContent = option.textContent;
-        selectHidden.value = option.dataset.value;
+        // Custom select logic
+        const customSelect = document.querySelector(".custom-select");
+        const selectDisplay = document.getElementById("attendanceDisplay");
+        const selectHidden = document.getElementById("attendance");
+        const optionsBox = document.getElementById("attendanceOptions");
 
-        selectHidden.dispatchEvent(new Event("change"));
-
-        optionsBox.style.display = "none";
-        selectDisplay.classList.remove("select-arrow-active");
+        function centerSelectDisplay() {
+          const height = selectDisplay.offsetHeight;
+          selectDisplay.style.lineHeight = height + "px";
+        }
         centerSelectDisplay();
+        window.addEventListener("resize", centerSelectDisplay);
+
+        selectDisplay.addEventListener("click", () => {
+          const isOpen = optionsBox.style.display === "block";
+          optionsBox.style.display = isOpen ? "none" : "block";
+          selectDisplay.classList.toggle("select-arrow-active", !isOpen);
+        });
+
+        optionsBox.querySelectorAll("div").forEach(option => {
+          option.addEventListener("click", () => {
+            selectDisplay.textContent = option.textContent;
+            selectHidden.value = option.dataset.value;
+            selectHidden.dispatchEvent(new Event("change"));
+            optionsBox.style.display = "none";
+            selectDisplay.classList.remove("select-arrow-active");
+            centerSelectDisplay();
+          });
+        });
+
+        window.addEventListener("click", e => {
+          if (!customSelect.contains(e.target)) {
+            optionsBox.style.display = "none";
+          }
+        });
+
+        // Submit handler
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+
+          if (!firstname.value.trim()) {
+            showError(firstname, "Please enter your first name 🌸");
+            return;
+          }
+          if (!lastname.value.trim()) {
+            showError(lastname, "Please enter your last name ✨");
+            return;
+          }
+          if (!selectHidden.value.trim()) {
+            showError(selectDisplay, "Please select an option 🙏");
+            return;
+          }
+          if (selectHidden.value === "Yes" && !headcount.value.trim()) {
+            showError(headcount, "Please enter number of guests 👥");
+            return;
+          }
+
+          const formData = new FormData(form);  
+          fetch(form.action, { method: "POST", body: formData, mode: "no-cors" });
+
+          form.reset();
+          GuestField.style.display = "none";
+          modal.style.display = "flex";
+
+          const closeHandler = () => {
+            modal.style.display = "none";
+            window.removeEventListener("click", closeHandler);
+            window.removeEventListener("touchstart", closeHandler);
+            window.removeEventListener("touchmove", closeHandler);
+            window.removeEventListener("scroll", closeHandler);
+          };
+          window.addEventListener("click", closeHandler, { once: true });
+          window.addEventListener("touchstart", closeHandler, { once: true });
+          window.addEventListener("touchmove", closeHandler, { once: true });
+          window.addEventListener("scroll", closeHandler, { once: true });
+        });
       });
-    });
-
-    window.addEventListener("click", e => {
-      if (!customSelect.contains(e.target)) {
-        optionsBox.style.display = "none";
-      }
-    });
-    
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-
-      if (!firstname.value.trim()) {
-        showError(firstname, "Please enter your first name 🌸");
-        return;
-      }
-
-      if (!lastname.value.trim()) {
-        showError(lastname, "Please enter your last name ✨");
-        return;
-      }
-      
-      const formData = new FormData(form);  
-      
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors"
-      });
-
-      form.reset();
-      GuestField.style.display = "none";
-      modal.style.display = "flex";
-
-      const closeHandler = () => {
-        modal.style.display = "none";
-        window.removeEventListener("click", closeHandler);
-        window.removeEventListener("touchstart", closeHandler);
-        window.removeEventListener("touchmove", closeHandler);
-        window.removeEventListener("scroll", closeHandler);
-      };
-
-      window.addEventListener("click", closeHandler, { once: true });
-      window.addEventListener("touchstart", closeHandler, { once: true });
-      window.addEventListener("touchmove", closeHandler, { once: true });
-      window.addEventListener("scroll", closeHandler, { once: true });
-    });
-  });
-</script>
-
+    </script>
   </section>
-
-</body></html>
+</body>
+</html>
