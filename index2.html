@@ -424,20 +424,18 @@ input {
       object-fit:contain; 
       display:block; 
       position: absolute; 
-      height: 40%; 
-      width: auto; 
+      transform: scale(0.4);
       filter: invert(1); 
       opacity: 0; 
       transition: opacity 1200ms ease-in-out 
     } 
     .visible { opacity: 1; }
     .graphics {
-      object-fit:contain;
+      object-fit: contain;
       position: absolute;
     }
     .SlideIn {
       animation: SlideIn 1000ms forwards ease-out;
-      animation-delay: 800ms;
     }  
     @keyframes SlideIn {
       from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); }
@@ -457,8 +455,10 @@ input {
       function checkImagesLoaded() {
         loadedImages++;
         if (loadedImages === images.length) {
-          document.getElementById('Logo').classList.add('visible'); 
-          slidingGraphics();
+          document.getElementById('Logo').classList.add('visible');
+          document.getElementById('Logo').addEventListener('transitionend', function() {
+            slidingGraphics();
+          }
         }
       }
       
