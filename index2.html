@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Smoother abbygotthedibs</title>
+<title>invitee</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
 <link rel="icon" type="image/png" href="images/favicon.png">
@@ -101,7 +101,7 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh;}
 .section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -418,13 +418,23 @@ input {
 <div class="section c2">
   <style> 
     img {
-      overflow: hidden;
+      overflow: clip;
+    }
+    #InviteContainer {
+    -moz-transform:scale(0.9);
+    -ms-transform:scale(0.9);
+    -o-transform:scale(0.9);
+    -webkit-transform:scale(0.9);
+    transform:scale(0.9);
+    margin: 0;
+    position: relative;
     }
     .logo { 
       object-fit:contain; 
       display:block; 
-      position: absolute; 
-      transform: scale(0.4);
+      position: relative; 
+      height: 45%;
+      width: auto;
       filter: invert(1); 
       opacity: 0; 
       transition: opacity 1200ms ease-in-out 
@@ -432,21 +442,23 @@ input {
     .visible { opacity: 1; }
     .graphics {
       object-fit: contain;
-      position: absolute;
+      position: relative;
     }
     .SlideIn {
       animation: SlideIn 1000ms forwards ease-out;
     }  
     @keyframes SlideIn {
-      from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); }
-       to  { transform: translateX(var(--xpos)) translateY(var(--ypos)) scale(var(--scaleto)); } 
+      from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); opacity: 0; }
+       to  { transform: translateX(var(--xpos)) translateY(var(--ypos)) scale(var(--scaleto)); opacity: 1; } 
     }
     
   </style>
-  <img id="Logo" src="images/favicon.png" class="logo">
-  <img src="images/ribbon.png" class="graphics" style="--xpos: -26%; --ypos: 78%; --scaleto: 0.3;">
-  <img src="images/stargold.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto: 1.2;">
-  <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
+  <div id="InviteContainer">
+    <img id="Logo" src="images/favicon.png" class="logo">
+    <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 8%; --scaleto: 0.3;">
+    <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto: 1.2;">
+    <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const images = document.querySelectorAll('.section background-image, .section img, .graphics img');
