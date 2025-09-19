@@ -101,7 +101,7 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh;}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; width: device-width; overflow: clip;}
 .section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -160,9 +160,8 @@ input {
 #LogoContainer
 {
   position: relative;
-  aspect-ratio: 0.717;
-  max-width: 85%;
-  height: 70%;
+  max-height: 55%;
+  height: auto;
 }
 #plyrContainer
 {
@@ -263,8 +262,8 @@ input {
 
 @media (max-width: 992px) {
   #LogoContainer {
-    max-width: 75%;
-    height: auto;
+    max-height: 55%;
+    width: auto;
   }
 
   #note-container {
@@ -284,7 +283,7 @@ input {
   }
   
   #LogoContainer {
-    max-width: 95%;
+    max-width: 65%;
     height: auto;
   }
 
@@ -453,10 +452,9 @@ input {
     }
     
   </style>
-  <div id="InviteContainer">
     <img id="Logo" src="images/favicon.png" class="logo">
-    <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 8%; --scaleto: 0.3;">
-    <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto: 1.2;">
+    <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 98%; --scaleto: 1.2;">
+    <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto:0.6;">
     <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
   </div>
   <script>
