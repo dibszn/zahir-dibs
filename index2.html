@@ -428,22 +428,50 @@ input {
       transition: opacity 1200ms ease-in-out 
     } 
     .visible { opacity: 1; }
+    .graphics {
+      object-fit:contain; 
+      display:block; 
+      position: absolute;
+    }
+    .SlideIn {
+      animation: SlideIn 800ms ease-in-out;
+    }  
+    @keyframes SlideIn {
+      from { transform: translateX(calc(var(--n)*2)); }
+      to { transform: translateX(calc(var(--n))); } 
+    }
+    
   </style>
   <img id="Logo" src="images/favicon.png" class="logo">
+  <img src="images/ribbon.png" class="graphics" style="--n: 20%">
+  <img src="images/stargold.png" class="graphics" style="--n: 75%">
+  <img src="images/pearl.png" class="graphics" style="--n: -20%">
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const images = document.querySelectorAll('.section background-image, .section img');
+      const images = document.querySelectorAll('.section background-image, .section img, .graphics img');
       let loadedImages = 0;
   
       function checkImagesLoaded() {
-      loadedImages++;
-      if (loadedImages === images.length) {
-        document.getElementById('Logo').classList.add('visible'); }
+        loadedImages++;
+        if (loadedImages === images.length) {
+          document.getElementById('Logo').classList.add('visible'); 
+          setTimeout(() => {
+            slidingGraphics();
+          }, 500);
+        }
       }
+      
       images.forEach(function(img) {
         img.addEventListener('load', checkImagesLoaded);
-        if (img.complete) checkImagesLoaded(); });
-    });
+        if (img.complete) checkImagesLoaded(); 
+      });
+
+    function slidingGraphics() {
+      document.querySelectorAll('.graphics').forEach(img => {
+      img.classList.add('SlideIn'); });
+    }
+  });
+    
   </script>
 </div>
 
