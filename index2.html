@@ -423,7 +423,7 @@ input {
     .logo { 
       object-fit:contain; 
       display:block; 
-      position: relative; 
+      position: absolute; 
       height: 40%; 
       width: auto; 
       filter: invert(1); 
@@ -432,12 +432,12 @@ input {
     } 
     .visible { opacity: 1; }
     .graphics {
-      object-fit:contain; 
-      display:block; 
+      object-fit:contain;
       position: absolute;
     }
     .SlideIn {
       animation: SlideIn 1000ms forwards ease-out;
+      animation-delay: 800ms;
     }  
     @keyframes SlideIn {
       from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); }
@@ -458,9 +458,7 @@ input {
         loadedImages++;
         if (loadedImages === images.length) {
           document.getElementById('Logo').classList.add('visible'); 
-          setTimeout(() => {
-            slidingGraphics();
-          }, 800);
+          slidingGraphics();
         }
       }
       
