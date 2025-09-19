@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>invitee</title>
+<title>Invite animation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-security-policy" content="default-src 'none'; connect-src 'self' https://script.google.com/macros/s/AKfycbw0Tmu540p0l_9grVL6q6xbNgp4T3gv5zHhQV6ruNioSigfZq9lmtryviDAkZYrJsSMMw/exec; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
 <link rel="icon" type="image/png" href="images/favicon.png">
@@ -101,7 +101,7 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; width: device-width; overflow: clip;}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; width: device-width; overflow: clip; }
 .section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -160,8 +160,9 @@ input {
 #LogoContainer
 {
   position: relative;
-  max-height: 55%;
-  height: auto;
+  aspect-ratio: 0.717;
+  max-width: 85%;
+  height: 70%;
 }
 #plyrContainer
 {
@@ -262,8 +263,8 @@ input {
 
 @media (max-width: 992px) {
   #LogoContainer {
-    max-height: 55%;
-    width: auto;
+    max-width: 75%;
+    height: auto;
   }
 
   #note-container {
@@ -283,7 +284,7 @@ input {
   }
   
   #LogoContainer {
-    max-width: 65%;
+    max-width: 95%;
     height: auto;
   }
 
@@ -417,23 +418,14 @@ input {
 <div class="section c2">
   <style> 
     img {
-      overflow: clip;
-    }
-    #InviteContainer {
-    -moz-transform:scale(0.9);
-    -ms-transform:scale(0.9);
-    -o-transform:scale(0.9);
-    -webkit-transform:scale(0.9);
-    transform:scale(0.9);
-    margin: 0;
-    position: relative;
+      overflow: hidden;
     }
     .logo { 
       object-fit:contain; 
       display:block; 
       position: relative; 
-      height: 45%;
-      width: auto;
+      height: 40%; 
+      width: auto; 
       filter: invert(1); 
       opacity: 0; 
       transition: opacity 1200ms ease-in-out 
@@ -456,8 +448,8 @@ input {
     <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 98%; --scaleto: 1.2;">
     <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto:0.6;">
     <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
-  </div>
-  <script>
+  
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       const images = document.querySelectorAll('.section background-image, .section img, .graphics img');
       let loadedImages = 0;
@@ -487,3 +479,6 @@ input {
 </div>
 
 </body></html>
+
+
+
