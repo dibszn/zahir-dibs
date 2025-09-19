@@ -437,7 +437,7 @@ input {
       position: absolute;
     }
     .SlideIn {
-      animation: SlideIn 1000ms ease-in-out;
+      animation: SlideIn 1000ms forwards ease-out;
     }  
     @keyframes SlideIn {
       from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); }
@@ -448,7 +448,7 @@ input {
   <img id="Logo" src="images/favicon.png" class="logo">
   <img src="images/ribbon.png" class="graphics" style="--xpos: -26%; --ypos: 78%; --scaleto: 0.3;">
   <img src="images/stargold.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto: 1.2;">
-  <img src="images/roundframe.png" class="graphics" style="--xpos: 106%; --ypos: 30%; --scaleto: 0.7;">
+  <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const images = document.querySelectorAll('.section background-image, .section img, .graphics img');
