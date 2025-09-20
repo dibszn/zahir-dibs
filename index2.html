@@ -109,7 +109,7 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; overflow: clip; overflow-clip-margin:0px;}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; overflow: hidden !important; position: relative; }
 .section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
@@ -449,7 +449,7 @@ input {
       position: absolute;
     }
     .SlideIn {
-      animation: SlideIn 1000ms forwards ease-out;
+      animation: SlideIn 1800ms ease-in;
     }  
     @keyframes SlideIn {
       from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); opacity: 0; }
@@ -460,9 +460,9 @@ input {
   <img id="Logo" src="images/favicon.png" class="logo visible">
 
   <img src="images/pearl.png" class="graphics" style="top: 0; right: 0; height: 30%;">
-  <img src="images/frame2.png" class="graphics" style="bottom: -11%; left: 8%; height: 50%;">
-  <img src="images/ovalframe.png" class="graphics" style="bottom: 5%; right: -5%; height: 42%; rotate: 90deg;">
-  <img src="images/stars.png" class="graphics" style="top: -9%; left: 5%; rotate: 68deg; height: 37%;">
+  <img src="images/frame2.png" class="graphics" style="bottom: -11%; left: 13%; height: 50%;">
+  <img src="images/ovalframe.png" class="graphics" style="bottom: 5%; right: -7%; height: 42%; rotate: 90deg;">
+  <img src="images/roundframe.png" class="graphics" style="top: 5%; left: 2%; height: 27%;">
   
   <script>
       document.addEventListener('DOMContentLoaded', function() {
