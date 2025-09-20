@@ -437,7 +437,7 @@ input {
       background-color: rgb(0,0,0,0.3);
     }
     .SlideIn {
-      animation: SlideIn 1300ms forwards ease-out;
+      animation: SlideIn 1300ms forwards ease-in-out;
     }  
     @keyframes SlideIn {
       from { transform: translateX(calc(10 * var(--xpos))) translateY(calc(10 * var(--ypos))); opacity: 0; }
@@ -447,6 +447,7 @@ input {
 
   <div id="FramesContainer">
     <img id="Logo" src="images/favicon.png" class="logo">
+    <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
   </div>
 
   <script>
