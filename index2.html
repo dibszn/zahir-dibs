@@ -101,11 +101,11 @@ input {
 .section.hide { opacity: 0; }
 .section.final { display: none; }
 
-.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh}
-.section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin;}
+.section.c2 { background-color: #383838; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding-bottom: 1.5vh; overflow: clip; }
+.section.c3 { background-color: #F7F7F7; background-image: url(images/songketbg2.png); background-size: cover; background-position: center 50%; padding: 2% 3%; font-size: 2vmin; }
 .section.c4 { background-color: #E39B7D; }
 .section.c5 { background-color: #E6E4DD; }
-.section.c6 { display: flex; flex-direction: column; background-color: #383838; background-image: url(images/batikbg.png); background-attachment: fixed; background-size: cover; background-position: center 50%;}
+.section.c6 { display: flex; flex-direction: column; background-color: #383838; background-image: url(images/batikbg.png); background-attachment: fixed; background-size: cover; background-position: center 50%; }
 
 .section.i1,
 .section.i2,
@@ -418,28 +418,27 @@ input {
 <div class="section c2">
   <style>
     #InviteContainer {
-    -moz-transform:scale(0.95);
-    -ms-transform:scale(0.95);
-    -o-transform:scale(0.95);
-    -webkit-transform:scale(0.95);
-    transform:scale(0.95);
-    margin: 0;
-    position: relative;
+      margin: 0;
+      position: absolute;
+      width: 45%;
     }
     .logo {
-      position: relative;
       object-fit:contain; 
       display:block; 
-      height: 40%; 
-      width: auto; 
       filter: invert(1); 
       opacity: 0; 
       transition: opacity 1200ms ease-in-out;
     }
     .visible { opacity: 1; }
-    .graphics {
+    #FramesContainer {
+      margin: 0;
+      position: absolute;
+      -moz-transform:scale(0.95);
+      -ms-transform:scale(0.95);
+      -o-transform:scale(0.95);
+      -webkit-transform:scale(0.95);
+      transform:scale(0.95);
       object-fit: contain;
-      position: relative;
     }
     .SlideIn {
       animation: SlideIn 1000ms forwards ease-out;
@@ -452,9 +451,11 @@ input {
   
   <div id="InviteContainer">
     <img id="Logo" src="images/favicon.png" class="logo visible">
-    <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 98%; --scaleto: 1.2;">
-    <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto:0.6;">
-    <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
+  </div>
+  <div id="FramesContainer">
+    <img src="images/stars.png" style="--xpos: 102%; --ypos: -98%; --scaleto: 0.7;">
+    <img src="images/pearlcorner.png" style="--xpos: -76%; --ypos: -42%; --scaleto:0.6;">
+    <img src="images/roundframe.png" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
   </div>
 
   <script>
