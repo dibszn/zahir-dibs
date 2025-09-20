@@ -72,6 +72,14 @@ body
   margin: 0;
   font-size: 2vmin;
 }
+.container {
+  max-width: 1500px;
+  margin: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
 a{outline:none}
 input {
     font-size: 2vmin;
@@ -259,6 +267,9 @@ input {
   #end-page-container {
     font-size: 1.8vmin;
   }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 992px) {
@@ -276,6 +287,9 @@ input {
     padding: 2% 4%;
     font-size: 2.1vmin;
   }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -284,7 +298,7 @@ input {
   }
   
   #LogoContainer {
-    max-width: 95%;
+    max-width: 70%;
     height: auto;
   }
 
@@ -304,6 +318,9 @@ input {
 
   .SpaceDays, .SpaceHours, .SpaceMinutes, .SpaceSeconds {
     min-width: auto;
+  }
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>
@@ -450,12 +467,10 @@ input {
     }
   </style>
   
-  <div id="InviteContainer">
-    <img id="Logo" src="images/favicon.png" class="logo visible">
-    <img src="images/stars.png" class="graphics" style="--xpos: 102%; --ypos: 98%; --scaleto: 1.2;">
-    <img src="images/pearlcorner.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto:0.6;">
-    <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
-  </div>
+  <img id="Logo" src="images/favicon.png" class="logo">
+  <img src="images/ribbon.png" class="graphics" style="--xpos: -26%; --ypos: 78%; --scaleto: 0.3;">
+  <img src="images/stargold.png" class="graphics" style="--xpos: -76%; --ypos: -42%; --scaleto: 1.2;">
+  <img src="images/roundframe.png" class="graphics" style="--xpos: 86%; --ypos: 27%; --scaleto: 0.85;">
 
   <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -466,9 +481,9 @@ input {
           loadedImages++;
           if (loadedImages === images.length) {
             document.getElementById('Logo').classList.add('visible');
-            document.getElementById('Logo').addEventListener('transitionend', function() {
+            /*document.getElementById('Logo').addEventListener('transitionend', function() {
               slidingGraphics();
-            });
+            });*/
           }
         }
         
