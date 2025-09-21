@@ -257,7 +257,8 @@ input {
 
 .ShoutoutText { font-family:'Baskerville Display PT',auto; margin:0; font-size:1em; font-weight:400; margin-bottom: 0.5em; font-style:italic; text-align:center; }
 
-.WithLove { align-items:flex-start; font-family:'New Icon Script',auto; margin:0; margin-top:2vmin; font-size:1.1em; font-weight:400; font-style:normal; text-align:center; }
+.WithLove { align-items:flex-start; font-family:'New Icon Script',auto; margin:0; margin-top:2vmin; font-size:1.1em; font-weight:400; font-style:normal; text-align:center; } 
+.InviteText { font-family:'Baskerville Display PT',auto; margin:0; font-size:200%; margin-bottom: 0.3em; font-style:normal; text-align:center; color:#113C25; }
 
 @media (max-width: 1200px) {
   #note-container {
@@ -433,34 +434,17 @@ input {
   <body>
     <div class="section c3">
   <style>
-    #container {
-    -moz-transform: scale(0.9);
-    -ms-transform: scale(0.9);
-    -o-transform: scale(0.9);
-    -webkit-transform: scale(09);
-    transform: scale(0.9);
-    margin: 0;
-    position: relative;
-    display: none;
-    max-width: 9%;
-    max-height: 9%;
-    flex-direction: column;
-    place-self: center;
-    user-select: none;
-    }
     .invite {
       position: relative;
       object-fit:contain; 
-      height:80%;
-      transform: rotate(90deg);
+      transform: scale(0.8) rotate(90deg);
       opacity: 0; 
       transition: opacity 1000ms ease-in-out;
     }
     .visible { opacity: 1; }
   </style>
-  <div id="container">
     <img id="paper" src="images/blankpaper.png" class="invite">
-  </div>
+    <p class="InviteText">You're invited!</p>
   <script>
       document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('.section.c3 background-image, .section.c3 img');
