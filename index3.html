@@ -440,41 +440,36 @@ input {
       -ms-transform: scale(0.8);
       -moz-transform: scale(0.8);
       -webkit-transform: scale(0.8);
-      place-self:center;
+      align-items:center;
       max-width:85%;
       display:flex;
       opacity: 0; 
       transition: opacity 1000ms ease-in-out;
-    }
-    #InviteText {
-      position: absolute;
-      display: flex;
+      justify-content: space-between;
       flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
+    }
+    .InvText {
+      position: relative;
+      font-family: 'Baskerville Display PT', auto;
+      color: #113c25;
       text-align: center;
-      background: transparent;
-      box-sizing: border-box;
-      z-index: 1;
-      font-size: 150%;
-      font-family: 'Inter', auto;
+      font-size: 250%;
+      margin: 0;
     }
     .invite {
       object-fit:contain; 
       width: 100%;
-      z-index: 0;
+      z-index: -1;
     }
     .visible { opacity: 1; }
   </style>
+
   <div id="InviteContainer">
-    <div id="InviteText">
-      <p>You're invited!</p>
-      <p>to the wedding of Adibah & Abby</p>
-    </div>
-    <img id="paper" src="images/blankpaperportrait.png" class="invite">  
+    <img id="paper" src="images/blankpaperportrait.png" class="invite">
+    <p class="text">You're invited!</p>
+    <p class="text">to the wedding of Adibah & Abby!</p>
   </div>
-    
-    
+  
   <script>
       document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('.section.c3 background-image, .section.c3 img');
