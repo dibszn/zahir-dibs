@@ -443,6 +443,8 @@ input {
       place-self:center;
       max-width:85%;
       display:flex;
+      opacity: 0; 
+      transition: opacity 1000ms ease-in-out;
     }
     #InviteText {
       position: absolute;
@@ -460,9 +462,11 @@ input {
     .invite {
       object-fit:contain; 
       width: 100%;
-      opacity: 0; 
-      transition: opacity 1000ms ease-in-out;
       z-index: 0;
+      transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
     }
     .visible { opacity: 1; }
   </style>
@@ -483,7 +487,7 @@ input {
         function checkImagesLoaded() {
           loadedImages++;
           if (loadedImages === images.length) {
-            document.getElementById('paper').classList.add('visible');
+            document.getElementById('InviteContainer').classList.add('visible');
           }
         }
         
