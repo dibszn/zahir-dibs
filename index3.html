@@ -448,17 +448,23 @@ input {
       justify-content: space-between;
       flex-direction: column;
     }
-    .InvText {
-      position: relative;
+    #DetailsContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      background: transparent;
+      box-sizing: border-box;
+      z-index: 1;
+      font-size: 250%;
       font-family: 'Baskerville Display PT', auto;
       color: #113c25;
-      text-align: center;
-      font-size: 250%;
       margin: 0;
     }
     .invite {
       object-fit:contain; 
-      width: 100%;
+      width: 70%;
       z-index: -1;
     }
     .visible { opacity: 1; }
@@ -466,8 +472,10 @@ input {
 
   <div id="InviteContainer">
     <img id="paper" src="images/blankpaperportrait.png" class="invite">
-    <p class="text">You're invited!</p>
-    <p class="text">to the wedding of Adibah & Abby!</p>
+     <div id="DetailsContainer">
+       <p>You're invited!</p>
+       <p>to the wedding of Adibah & Abby!</p>
+     </div>
   </div>
   
   <script>
