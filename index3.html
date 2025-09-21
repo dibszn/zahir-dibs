@@ -463,10 +463,6 @@ input {
       object-fit:contain; 
       width: 100%;
       z-index: 0;
-      transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -webkit-transform: rotate(90deg);
     }
     .visible { opacity: 1; }
   </style>
@@ -475,7 +471,7 @@ input {
       <p>You're invited!</p>
       <p>to the wedding of Adibah & Abby</p>
     </div>
-    <img id="paper" src="images/blankpaper.png" class="invite">  
+    <img id="paper" src="images/blankpaperportrait.png" class="invite">  
   </div>
     
     
@@ -487,7 +483,7 @@ input {
         function checkImagesLoaded() {
           loadedImages++;
           if (loadedImages === images.length) {
-            document.getElementById('InviteContainer').classList.add('visible');
+            document.getElementById('InviteContainer').style.opacity = "1";
           }
         }
         
