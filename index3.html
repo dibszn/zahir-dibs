@@ -449,33 +449,34 @@ input {
       flex-direction: column;
     }
     #DetailsContainer {
-      display: flex;
+      position: absolute;
+      display:flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      text-align: center;
       background: transparent;
-      box-sizing: border-box;
-      z-index: 1;
-      font-size: 250%;
+    }
+    .InvText {
       font-family: 'Baskerville Display PT', auto;
       color: #113c25;
+      text-align: center;
+      font-size: 150%;
       margin: 0;
     }
     .invite {
       object-fit:contain; 
-      width: 70%;
+      width: 100%;
       z-index: -1;
     }
     .visible { opacity: 1; }
   </style>
 
-<div id="note-parent">
-    <div id="note-container">
-      <p id="DetailsContainer">You are invited!</p>
-      <p id="DetailsContainer">to the wedding of Adibah & Abby</p>
+  <div id="InviteContainer">
+    <img id="paper" src="images/blankpaperportrait.png" class="invite">
+    <div id="DetailsContainer">
+      <p class="text">You're invited!</p>
+      <p class="text">to the wedding of Adibah & Abby!</p>
     </div>
-    <img id="note-image" src="images/blankpaperportrait.png" alt="Note" crossorigin="anonymous" draggable="false" class="invite">
   </div>
   
   <script>
